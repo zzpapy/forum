@@ -39,23 +39,27 @@
             }
             if($bool){
                 var_dump($bool);
+                $man = new SujetManager();
+                $sujets = $man->findAll();  
                 return [
                     "view" => VIEW_DIR."sujet.php",
                     "data" => [
                         "bool" => $bool,
-                        "user" => $user
+                        "user" => $user,
+                        "liste"=>$sujets,
                     ]
                 ];
             }
         }
         public function crea_sujet($id){
             $man = new SujetManager();
-            $man->add($id);    
-            // $user = $_SESSION["user"];
-            // var_dump($id);die;
+            $man->add($id);  
+            $sujets = $man->findAll();  
+            // // $user = $_SESSION["user"];
+            // var_dump($sujets);die;
             return [
                 "view" => VIEW_DIR."crea_sujet.php",
-                "data" => ""
+                "data" => $sujets
             ];
         }
                                         public function voir($id){

@@ -52,26 +52,36 @@
                 $data["pseudo"] = filter_var ( $data["pseudo"], FILTER_SANITIZE_STRING);
                 $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
                 unset($data["crea"]);
+                $keys = array_keys($data);
+                $values = array_values($data);
+                
+                $sql = "INSERT INTO ".$this->tableName."
+                (".implode(',', $keys).")
+                VALUES
+                ('".implode("','",$values)."')";
+                return DAO::insert($sql);
             }
-            else{
-                $data = array(
-                    'id'    => FILTER_VALIDATE_INT,                    
-                    'titre'   => FILTER_SANITIZE_STRING
-                );
-                $data = filter_input_array(INPUT_POST, $data);
-                var_dump($data);die;
-
-            }
-               
-            
-            $keys = array_keys($data);
-            $values = array_values($data);
-            
-            $sql = "INSERT INTO ".$this->tableName."
+            else if(isset( $data["titre"])){
+                // $data = array(
+                    //     'id'    => FILTER_VALIDATE_INT,                    
+                    //     'titre'   => FILTER_SANITIZE_STRING
+                    // );
+                    $data["user_id"] = filter_var ( $data["user_id"], FILTER_SANITIZE_STRING);
+                    $data["titre"] = filter_var ( $data["titre"], FILTER_SANITIZE_STRING);
+                    unset($data["crea_sujet"]);
+                    // var_dump($data);die;
+                    $keys = array_keys($data);
+                $values = array_values($data);
+                
+                $sql = "INSERT INTO ".$this->tableName."
                     (".implode(',', $keys).")
                     VALUES
                     ('".implode("','",$values)."')";
-            return DAO::insert($sql);
+                return DAO::insert($sql);
+            }
+            
+            
+            
         }
         public function update($data,$id){
             // var_dump($data);die;

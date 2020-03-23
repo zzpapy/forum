@@ -3,7 +3,7 @@ namespace Model\Entities;
 
 use App\Entity;
 
-final class VehSujeticule extends Entity{
+final class Sujet extends Entity{
 
     private $id;
     private $user_id;

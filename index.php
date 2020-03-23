@@ -18,7 +18,7 @@
     }
     else if(isset($_POST["crea_sujet"])){
         $action = "crea_sujet";
-        $id=[$_POST["id"],$_POST["titre_sujet"]];
+        $id=$_POST;
     }
     else if(isset($_GET['action'])){
         if(isset($_POST["crea"])){
@@ -35,12 +35,12 @@
     }
     
     
-    var_dump($action,$id);        
+    // var_dump($_POST,$id);        
     $result = $ctrl->$action($id);
     if(isset($result["data"]["bool"])){
         if($result["data"]["bool"] == true){
             SESSION::sessionStart($result["data"]["user"]); 
-            var_dump($result);
+            // var_dump($result);
         }
         else{
             $action = "index";
