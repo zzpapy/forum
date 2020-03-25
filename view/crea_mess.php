@@ -7,32 +7,38 @@ else{
 }
 ?>
 <div class="list_message">
-    
-    <?php 
-    echo "<h1> Titre du sujet : ".$result["data"]["sujet"]."</h1>";
-        $i = 1;
-        // var_dump(count($result["data"]));
-        // var_dump($result["data"][0]);
-        if($result["data"][0] !=NULL){
-            foreach ($result["data"][0] as $key => $value) {
-                echo "<div>";
-                echo "<div>message n°:".$i."</div>";
-                echo "<p>Auteur :".$value->getMembre()->getPseudo()."</p>";
-                echo "<div> contenu:".$value->getContent()."</div>";
-                echo "</div>";
-                $i++;
+    <div class="crea_mess">
+        <h2>Participez à la discussion</h2>
+        <form action="" method="POST">
+            <input type="hidden" name="membre_id" value="<?= $_GET["membre_id"] ?>">
+            <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
+            <input type="text" class="input" name="content">
+            <!-- <textarea name="content" id="" cols="50" rows="10"></textarea> -->
+            <input type="submit" name="crea_mess">
+        </form>
+    </div>
+    <div>
+        <?php 
+        echo "<h1> Titre du sujet : ".$result["data"]["sujet"]."</h1>";
+            $i = 1;
+            // var_dump(count($result["data"]));
+            // var_dump($result["data"][0]);
+            if($result["data"][0] !=NULL){
+                
+                echo "<h3>liste des messages</h3>";
+                foreach ($result["data"][0] as $key => $value) {
+                    echo "<div class='message'>";
+                    echo "<div class='head_mess'>";
+                    echo "<p>Auteur :".$value->getMembre()->getPseudo()."</p>";
+                    echo "<p>date :".$value->getDate()."</p></div>";
+                    echo "<div> contenu:<br><p>".$value->getContent()."<p></div>";
+                    echo "</div>";
+                    $i++;
+                }
             }
-        }
-        else{
-            echo "<h2> Syoez le premier à rédiger un message sur ce sujet</h2>";
-        }
-    ?>
-</div>
-<div class="crea_mess">
-    <form action="" method="POST">
-        <input type="hidden" name="membre_id" value="<?= $_GET["membre_id"] ?>">
-        <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
-        <input type="text" name="content">
-        <input type="submit" name="crea_mess">
-    </form>
+            else{
+                echo "<h2> Syoez le premier à rédiger un message sur ce sujet</h2>";
+            }
+        ?>
+    </div>
 </div>

@@ -62,21 +62,29 @@
             $man = new MembreManager($data);
             $user = $man -> findOneByName($data["pseudo"]);
             $bool = false;
-            if( password_verify($data["password"], $user->getPassword())){
-                $bool = true;
-                
-            }
-            if($bool){
-                // var_dump($bool);
-                $man = new SujetManager();
-                $sujets = $man->findAll();  
+            if($user){
+                if( password_verify($data["password"], $user->getPassword())){
+                    $bool = true;
+                    
+                }
+                if($bool){
+                    // var_dump($bool);
+                    $man = new SujetManager();
+                    $sujets = $man->findAll();  
+                    return [
+                        "view" => VIEW_DIR."sujet.php",
+                        "data" => [
+                            "bool" => $bool,
+                            "user" => $user,
+                            "liste"=>$sujets,
+                            ]
+                        ];
+                    }
+                }
+                else{
                 return [
-                    "view" => VIEW_DIR."sujet.php",
-                    "data" => [
-                        "bool" => $bool,
-                        "user" => $user,
-                        "liste"=>$sujets,
-                    ]
+                    "view" => VIEW_DIR."home.php" ,
+                    "data" => "ce compte n'existe pas"                       
                 ];
             }
         }
@@ -85,8 +93,8 @@
         }
         public function crea_sujet($id){
             $man = new SujetManager();
-            $sujets = $man->findAll();  
             $man->add($id);  
+            $sujets = $man->findAll();  
             // // $user = $_SESSION["user"];
             // var_dump($sujets);die;
             return [

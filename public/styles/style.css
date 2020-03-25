@@ -2,29 +2,74 @@
     box-sizing: border-box;
 }
 .wrapper{
-    /* width: 75%; */
+    width: 75%;
+    margin: auto;
+    font-family: 'Open Sans', sans-serif;
+}
+.sticky{
+    position: sticky;
+    top: 0;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px;
+    background: #aaa;
+    padding: 1em;
 }
 .head{
     display: flex;
     justify-content: space-evenly;
-    border: 1px solid black;
     margin:0 auto;
     align-items: center;
 }
+.head span:nth-child(odd){
+    background: white;
+    padding: 0 1em;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px;
+}
+.input{
+    width: 80%;
+    line-height: 3em;
+}
 .head span{
-    padding: 1em;
+    /* padding: 1em; */
     font-size: 1.5em;
+}
+.head_mess{
+    display: flex;
+    justify-content: space-evenly;
 }
 a{
   text-decoration: none; 
   color: black; 
 }
+.crea_mess{
+    position: sticky;
+    top:10em;
+}
 .container{
-    width: 75%;
+    /* width: 75%; */
     margin: auto;
     text-align: center;
+    padding: 1em;
+    background: ivory;
 }
 ul{
     list-style: none;
     font-size: 2em;
+}
+h1,h2,h3{
+    text-align: center;
+}
+.list_message{
+    /* display: flex; */
+    justify-content: space-evenly;
+}
+.list_message >div{
+    margin: auto;
+}
+.message{
+    border: 1px solid black;
+    background: white;
+    box-shadow: 1px 1px 1px;
+    margin: 0.5em;
 }

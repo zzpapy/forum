@@ -47,7 +47,7 @@
         public function findBySujet($sujet_id){
             $sql = "SELECT *
                     FROM ".$this->tableName." v WHERE v.sujet_id = :id
-                    ";
+                    ORDER BY id_message DESC";
 
             return $this->getMultipleResults(
                 DAO::select($sql, ['id' => $sujet_id]), 
@@ -59,9 +59,12 @@
         public function add($data){
             
             if(isset($data["pseudo"])){
+                
+                
                 $data["pseudo"] = filter_var ( $data["pseudo"], FILTER_SANITIZE_STRING);
                 $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
                 unset($data["crea"]);
+                
                 $keys = array_keys($data);
                 $values = array_values($data);
                 
@@ -76,9 +79,13 @@
                     //     'id'    => FILTER_VALIDATE_INT,                    
                     //     'titre'   => FILTER_SANITIZE_STRING
                     // );
-                    $data["id_membre"] = filter_var ( $data["id_membre"], FILTER_SANITIZE_STRING);
+                    var_dump($data);
+                    $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
                     $data["titre"] = filter_var ( $data["titre"], FILTER_SANITIZE_STRING);
                     unset($data["crea_sujet"]);
+                    $date = new \DateTime();
+                    $date = date_format($date, 'Y-m-d H:i:s');
+                    $data["date"] = $date;
                     // var_dump($data);die;
                     $keys = array_keys($data);
                 $values = array_values($data);
@@ -90,10 +97,14 @@
                 return DAO::insert($sql);
             }
             else if(isset($data["content"])){
-                var_dump($data);
+                // var_dump($data);
                 $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
                 $data["sujet_id"] = filter_var ( $data["sujet_id"], FILTER_SANITIZE_STRING);
                 $data["content"] = filter_var ( $data["content"], FILTER_SANITIZE_STRING);
+                $date = new \DateTime();
+                $date = date_format($date, 'Y-m-d H:i:s');
+                $data["date"] = $date;
+                // var_dump($date);die;
                 unset($data["crea_mess"]);
                 $keys = array_keys($data);
                 $values = array_values($data);

@@ -8,6 +8,7 @@ final class Sujet extends Entity{
     private $id;
     private $titre;
     private $membre;
+    private $date;
 
     public function __construct($data){  
         $this->hydrate($data);        
@@ -70,6 +71,26 @@ final class Sujet extends Entity{
     public function setTitre($titre)
     {
         $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date
+     */ 
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set the value of date
+     *
+     * @return  self
+     */ 
+    public function setDate($date)
+    {
+        $this->date = $date;
 
         return $this;
     }
