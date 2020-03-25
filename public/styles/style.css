@@ -2,13 +2,13 @@
     box-sizing: border-box;
 }
 .wrapper{
-    width: 75%;
+    /* width: 75%; */
     margin: auto;
     font-family: 'Open Sans', sans-serif;
 }
 .sticky{
     position: sticky;
-    top: 0;
+    top: 0px;
     border: 1px solid black;
     box-shadow: 1px 1px 1px;
     background: #aaa;
@@ -19,6 +19,8 @@
     justify-content: space-evenly;
     margin:0 auto;
     align-items: center;
+    margin-bottom: -1em;
+    padding: 1em;
 }
 .head span:nth-child(odd){
     background: white;
@@ -44,7 +46,10 @@ a{
 }
 .crea_mess{
     position: sticky;
-    top:10em;
+    background: rgb(150,150,150,0.5);
+    margin: auto;
+    top:10.5em;
+    padding: 1em;
 }
 .container{
     /* width: 75%; */
@@ -56,6 +61,7 @@ a{
 ul{
     list-style: none;
     font-size: 2em;
+    padding: 0;
 }
 h1,h2,h3{
     text-align: center;
@@ -65,7 +71,7 @@ h1,h2,h3{
     justify-content: space-evenly;
 }
 .list_message >div{
-    margin: auto;
+   
 }
 .message{
     border: 1px solid black;
