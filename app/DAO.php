@@ -41,6 +41,7 @@
                 $stmt = self::$bdd->prepare($sql);
                 // var_dump($stmt);die;
                 $result = $stmt->execute();
+                // var_dump($result);die;
                 $stmt->closeCursor();
                 // return  self::$bdd->lastInsertId();
                 
@@ -78,6 +79,7 @@
                     }
                 }
                 else $results = $stmt->fetch();
+                // var_dump($sql);die;
                 // var_dump($results);die;
                 $stmt->closeCursor();
                 return ($results == false) ? null : $results;

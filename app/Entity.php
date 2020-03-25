@@ -4,8 +4,8 @@
     abstract class Entity{
 
         protected function hydrate($data){
+            $tab = [];
             foreach($data as $field => $value){
-                
                 //field = marque_id
                 //fieldarray = ['marque','id']
                 $fieldArray = explode("_", $field);
@@ -16,15 +16,18 @@
                     
                     $man = new $FQCName();
                     $value = $man->findOneById($value);
+                    
                 }
                 
                 $method = "set".ucfirst($fieldArray[0]);
                 if(method_exists($this, $method)){
-                    // var_dump($value);
+                    array_push($tab, $this->$method($value));
                     $this->$method($value);
+                    // var_dump($method);
                 }
-
+                
             }
+            // var_dump($tab);
         }
 
         public function getClass(){

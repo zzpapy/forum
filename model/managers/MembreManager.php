@@ -3,12 +3,12 @@
     
     use App\Manager;
     use App\DAO;
-    use Model\Entities\User;
+    use Model\Entities\Membre;
 
-    class UserManager extends Manager{
+    class MembreManager extends Manager{
 
-        protected $className = "Model\Entities\User"; 
-        protected $tableName = "user";
+        protected $className = "Model\Entities\Membre"; 
+        protected $tableName = "membre";
 
         public function __construct(){
             parent::connect();

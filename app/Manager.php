@@ -12,7 +12,7 @@
             $sql = "SELECT *
                     FROM ".$this->tableName." a
                     ";
-
+       
             return $this->getMultipleResults(
                 DAO::select($sql), 
                 $this->className
@@ -44,6 +44,16 @@
                 $this->className
             );
         }
+        public function findBySujet($sujet_id){
+            $sql = "SELECT *
+                    FROM ".$this->tableName." v WHERE v.sujet_id = :id
+                    ";
+
+            return $this->getMultipleResults(
+                DAO::select($sql, ['id' => $sujet_id]), 
+                $this->className
+            );
+        }
         
         
         public function add($data){
@@ -66,12 +76,29 @@
                     //     'id'    => FILTER_VALIDATE_INT,                    
                     //     'titre'   => FILTER_SANITIZE_STRING
                     // );
-                    $data["user_id"] = filter_var ( $data["user_id"], FILTER_SANITIZE_STRING);
+                    $data["id_membre"] = filter_var ( $data["id_membre"], FILTER_SANITIZE_STRING);
                     $data["titre"] = filter_var ( $data["titre"], FILTER_SANITIZE_STRING);
                     unset($data["crea_sujet"]);
                     // var_dump($data);die;
                     $keys = array_keys($data);
                 $values = array_values($data);
+                
+                $sql = "INSERT INTO ".$this->tableName."
+                    (".implode(',', $keys).")
+                    VALUES
+                    ('".implode("','",$values)."')";
+                return DAO::insert($sql);
+            }
+            else if(isset($data["content"])){
+                var_dump($data);
+                $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
+                $data["sujet_id"] = filter_var ( $data["sujet_id"], FILTER_SANITIZE_STRING);
+                $data["content"] = filter_var ( $data["content"], FILTER_SANITIZE_STRING);
+                unset($data["crea_mess"]);
+                $keys = array_keys($data);
+                $values = array_values($data);
+                // var_dump($data);die;
+                // var_dump($this->tableName);die;
                 
                 $sql = "INSERT INTO ".$this->tableName."
                     (".implode(',', $keys).")

@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+.wrapper{
+    /* width: 75%; */
+}
+.head{
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    margin:0 auto;
+    align-items: center;
+}
+.head span{
+    padding: 1em;
+    font-size: 1.5em;
+}
+a{
+  text-decoration: none; 
+  color: black; 
+}
+.container{
+    width: 75%;
+    margin: auto;
+    text-align: center;
+}
+ul{
+    list-style: none;
+    font-size: 2em;
+}

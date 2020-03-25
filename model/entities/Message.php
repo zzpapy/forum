@@ -3,11 +3,11 @@ namespace Model\Entities;
 
 use App\Entity;
 
-final class VehSujeticule extends Entity{
+final class Message extends Entity{
 
-    private $id_message;
-    private $id_user;
-    private $id_sujet;
+    private $id;
+    private $membre;
+    private $sujet;
     private $content;
 
     public function __construct($data){         
@@ -15,61 +15,61 @@ final class VehSujeticule extends Entity{
     }
 
     /**
-     * Get the value of id_message
+     * Get the value of id
      */ 
-    public function getId_message()
+    public function getId()
     {
-        return $this->id_message;
+        return $this->id;
     }
 
     /**
-     * Set the value of id_message
+     * Set the value of id
      *
      * @return  self
      */ 
-    public function setId_message($id_message)
+    public function setId($id)
     {
-        $this->id_message = $id_message;
+        $this->id = $id;
 
         return $this;
     }
 
     /**
-     * Get the value of id_user
+     * Get the value of membre
      */ 
-    public function getId_user()
+    public function getMembre()
     {
-        return $this->id_user;
+        return $this->membre;
     }
 
     /**
-     * Set the value of id_user
+     * Set the value of membre
      *
      * @return  self
      */ 
-    public function setId_user($id_user)
+    public function setMembre($membre)
     {
-        $this->id_user = $id_user;
+        $this->membre = $membre;
 
         return $this;
     }
 
     /**
-     * Get the value of id_sujet
+     * Get the value of sujet
      */ 
-    public function getId_sujet()
+    public function getsujet()
     {
-        return $this->id_sujet;
+        return $this->sujet;
     }
 
     /**
-     * Set the value of id_sujet
+     * Set the value of sujet
      *
      * @return  self
      */ 
-    public function setId_sujet($id_sujet)
+    public function setsujet($sujet)
     {
-        $this->id_sujet = $id_sujet;
+        $this->sujet = $sujet;
 
         return $this;
     }

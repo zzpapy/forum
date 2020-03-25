@@ -11,7 +11,18 @@
 </head>
 <body>
 <div class="wrapper">
-    <div class="container">
+    <h1>Mon Forum</h1>
+    <div class="head">
+        
+            <?php 
+                if(isset($_SESSION["user"])){
+                    echo "<span><a href='index.php?action=sujet'>Accueil</a></span>";
+                    echo "<span>Bonjour : ".unserialize($_SESSION["user"])->getPseudo()."</span>";
+                    echo "<span><a href='index.php?action=logout'>logout</a></span>";
+                }        
+            ?>
+    </div>
+    <div class="container">      
         <?php 
         echo $page;
         ?>

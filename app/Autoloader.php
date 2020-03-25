@@ -21,7 +21,6 @@
 			$file = $className.'.php';
 
 			$filepath = BASE_DIR.strtolower($path).DS.$file;
-
 			if(file_exists($filepath)){
 				require $filepath;
 			}

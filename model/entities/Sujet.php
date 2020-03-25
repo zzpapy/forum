@@ -6,13 +6,14 @@ use App\Entity;
 final class Sujet extends Entity{
 
     private $id;
-    private $user_id;
     private $titre;
+    private $membre;
 
-    public function __construct($data){         
+    public function __construct($data){  
         $this->hydrate($data);        
+        // var_dump($data,$this);die;      
     }
-
+    
     /**
      * Get the value of id
      */ 
@@ -34,21 +35,21 @@ final class Sujet extends Entity{
     }
 
     /**
-     * Get the value of user_id
+     * Get the value of membre
      */ 
-    public function getUser_id()
+    public function getMembre()
     {
-        return $this->user_id;
+        return $this->membre;
     }
 
     /**
-     * Set the value of user_id
+     * Set the value of membre
      *
      * @return  self
      */ 
-    public function setUser_id($user_id)
+    public function setMembre($membre)
     {
-        $this->user_id = $user_id;
+        $this->membre = $membre;
 
         return $this;
     }
