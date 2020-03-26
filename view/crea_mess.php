@@ -37,14 +37,14 @@ else{
                 
                 echo "<h3>liste des messages</h3>";
                 foreach ($result["data"][0] as $key => $value) {
+                    // var_dump($result["data"]);die;
                     $id_mess = $value->getId();
                    
                     echo "<div class='message'>";
                     echo "<div class='head_mess'>";
                     echo "<p>Auteur :".$value->getMembre()->getPseudo()."</p>";
-                    // echo "<div> id message :".$id_mess."</div></div>";
+                    echo "id message :".$id_mess."";
                     $date = new \DateTime($value->getDate());
-                    // $date = strtotime($value->getDate());
                     $date = $date->format('d/m/Y H:i');
                     echo "<p>date :".$date."</p></div>";
                     echo "<div> contenu:<br><p>".$value->getContent()."<p></div>";
@@ -58,6 +58,7 @@ else{
                     <input type="hidden" name="message_id" value="'.$id_mess.'">';
                     echo "<input type='submit'></div>";
                     echo "</form>";
+                    // echo "</div>";
                     if($subMess){
                         foreach ($subMess as $key => $value) {
                             if($value->getMessage()->getId() == $id_mess){
@@ -67,7 +68,9 @@ else{
                                 echo "<div class='head_mess'>";
                                 // echo $value->getMessage()->getId() == $id_mess;
                                 echo "<p>Auteur :".$value->getMembre()->getPseudo()."</p>";
-                                echo "<p>date :".$value->getDate()."</p></div>";
+                                $date = new \DateTime($value->getDate());
+                                $date = $date->format('d/m/Y H:i');
+                                echo "<p>date :".$date."</p></div>";
                                 echo "<div>contenu:<br><p>".$value->getContent()."</p></div>";
                                 // echo "<div>id submes : ".$value->getId()."</div>";
                                 echo "</div>";

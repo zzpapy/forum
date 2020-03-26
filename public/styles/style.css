@@ -14,13 +14,16 @@
     background: #aaa;
     padding: 1em;
 }
+.sticky h1{
+    margin: 0;
+}
 .head{
     display: flex;
     justify-content: space-evenly;
     margin:0 auto;
     align-items: center;
     margin-bottom: -1em;
-    padding: 1em;
+    margin-bottom: 0.2em;
 }
 .head span:nth-child(odd){
     background: white;
@@ -48,7 +51,7 @@ a{
     position: sticky;
     background: rgb(150,150,150,0.5);
     margin: auto;
-    top:10.5em;
+    top:7em;
     padding: 1em;
 }
 .container{

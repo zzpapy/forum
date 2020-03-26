@@ -69,7 +69,7 @@ CREATE TABLE `message` (
 
 CREATE TABLE `submess` (
   `id_submess` int(11) NOT NULL,
-  `titre` text COLLATE utf8_bin NOT NULL,
+  `content` text COLLATE utf8_bin NOT NULL,
   `message_id` int(11) NOT NULL,
   `membre_id` int(11) NOT NULL,
   `date` date DEFAULT NULL

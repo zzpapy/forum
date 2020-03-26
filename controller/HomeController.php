@@ -98,8 +98,10 @@
         }
         public function crea_sujet($id){
             $man = new SujetManager();
-            $man->add($_POST);  
+            $sujet = $man->add($_POST);  
             $sujets = $man->findAll(); 
+            // var_dump($sujet);die;
+            header(('location:index.php?action=crea_mess&membre_id='.unserialize($_SESSION["user"])->getId().'&sujet_id='.$sujet.''));
             return [
                 "view" => VIEW_DIR."crea_sujet.php",
                 "data" => $sujets
@@ -114,7 +116,6 @@
             $sujet = $man->findOneById($_GET["sujet_id"])->getTitre();
             $sub = new SubMessManager();
             $sub_mess = $sub->findAll();
-            // var_dump($sub_mess);die;
 
             return [
                 "view" => VIEW_DIR."crea_mess.php",
@@ -122,20 +123,20 @@
             ];
         }
         public function subMess(){
-            // var_dump($_POST);die;
             $sub = new SubMessManager();
-            $sub_mess = $sub->findAll();
             $test = $sub->add($_POST);
+            // $_POST = '';
+            $sub_mess = $sub->findAll();
+            // var_dump($test);die;
             $man = new MessageManager();
             $mess = $man->findBySujet($_GET["sujet_id"]);
             $man = new SujetManager();
             $sujet = $man->findOneById($_GET["sujet_id"])->getTitre();
             // var_dump($sub_mess);die;
             // $this->crea_mess($_POST);
-            return [
-                "view" => VIEW_DIR."crea_mess.php",
-                "data" => [$mess,"sujet" => $sujet,"subMess"=>$sub_mess]
-            ];
+           header('location:index.php?action=crea_mess&sujet_id='.$_GET["sujet_id"].'&membre_id='.unserialize($_SESSION["user"])->getId().'');
+            
+            // var_dump($_POST);die;
         }
                                        
     }

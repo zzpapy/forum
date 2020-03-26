@@ -43,7 +43,8 @@
                 $result = $stmt->execute();
                 // var_dump($result);die;
                 $stmt->closeCursor();
-                // return  self::$bdd->lastInsertId();
+                // var_dump(self::$bdd->lastInsertId());die;
+                return  self::$bdd->lastInsertId();
                 
             }
             catch(\Exception $e){

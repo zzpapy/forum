@@ -11,7 +11,7 @@
 
             $sql = "SELECT *
                     FROM ".$this->tableName." a
-                    ";
+                    ORDER BY date DESC";
        
             return $this->getMultipleResults(
                 DAO::select($sql), 
@@ -80,7 +80,7 @@
                     //     'id'    => FILTER_VALIDATE_INT,                    
                     //     'titre'   => FILTER_SANITIZE_STRING
                     // );
-                    var_dump($data);
+                    // var_dump($data);
                     $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
                     $data["titre"] = filter_var ( $data["titre"], FILTER_SANITIZE_STRING);
                     unset($data["crea_sujet"]);
@@ -98,49 +98,51 @@
                 return DAO::insert($sql);
             }
             else if(isset($data["content"]) && !isset($data["message_id"])){
-                // var_dump(isset($data["content"]) && !isset($data["message_id"]));die;
-               
-                $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
-                $data["sujet_id"] = filter_var ( $data["sujet_id"], FILTER_SANITIZE_STRING);
-                $data["content"] = filter_var ( $data["content"], FILTER_SANITIZE_STRING);
-                $date = new \DateTime();
-                $date = date_format($date, 'Y-m-d H:i:s');
-                $data["date"] = $date;
-                // var_dump($date);die;
-                unset($data["crea_mess"]);
-                $keys = array_keys($data);
-                $values = array_values($data);
-                // var_dump($data);die;
-                // var_dump($this->tableName);die;
-                
-                $sql = "INSERT INTO ".$this->tableName."
+                $_POST = '';
+                if($data["content"] != ''){
+                    $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
+                    $data["sujet_id"] = filter_var ( $data["sujet_id"], FILTER_SANITIZE_STRING);
+                    $data["content"] = filter_var ( $data["content"], FILTER_SANITIZE_STRING);
+                    $date = new \DateTime();
+                    $date = date_format($date, 'Y-m-d H:i:s');
+                    $data["date"] = $date;
+                    // var_dump($date);die;
+                    unset($data["crea_mess"]);
+                    $keys = array_keys($data);
+                    $values = array_values($data);
+                    // var_dump($data);die;
+                    // var_dump($this->tableName);die;
+                    
+                    $sql = "INSERT INTO ".$this->tableName."
                     (".implode(',', $keys).")
                     VALUES
                     ('".implode("','",$values)."')";
-                return DAO::insert($sql);
+                    return DAO::insert($sql);
+                }
             }
             else if(!empty($_POST)){
-                // var_dump($data);die;
-                $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
-                $data["message_id"] = filter_var ( $data["message_id"], FILTER_SANITIZE_STRING);
-                $data["content"] = filter_var ( $data["content"], FILTER_SANITIZE_STRING);
-                $date = new \DateTime();
-                $date = date_format($date, 'Y-m-d H:i:s');
-                $data["date"] = $date;
-                $keys = array_keys($data);
-                $values = array_values($data);
-                // var_dump($data);die;
-                // var_dump($this->tableName);die;
-                
-                $sql = "INSERT INTO ".$this->tableName."
+                if(isset($_POST["content"]) && $_POST["content"] != ''){
+                    $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
+                    $data["message_id"] = filter_var ( $data["message_id"], FILTER_SANITIZE_STRING);
+                    $data["content"] = filter_var ( $data["content"], FILTER_SANITIZE_STRING);
+                    $date = new \DateTime();
+                    $date = date_format($date, 'Y-m-d H:i:s');
+                    $data["date"] = $date;
+                    $keys = array_keys($data);
+                    $values = array_values($data);
+                    // var_dump($data);die;
+                    // var_dump($data);die;
+                    // var_dump($this->tableName);die;
+                    
+                    $sql = "INSERT INTO ".$this->tableName."
                     (".implode(',', $keys).")
                     VALUES
                     ('".implode("','",$values)."')";
-                return DAO::insert($sql);
+                    $_POST = [];
+                    // var_dump(isset($_POST["content"]) && $_POST["content"] != '');die;
+                    return DAO::insert($sql);
+                }
             }
-            
-            
-            
         }
         public function update($data,$id){
             // var_dump($data);die;

@@ -12,11 +12,15 @@
         <?php 
         // var_dump(unserialize($_SESSION["user"]));
             $user = unserialize($_SESSION["user"]);
-            // var_dump($result);
-            if(isset($result["data"]["liste"] )){
+            if(isset($result["data"]["liste"]) && !is_object($result["data"]["liste"])){
                 foreach ($result["data"]["liste"] as $key => $value) {
-                   echo "<a href='index.php?action=crea_mess&sujet_id=".$value->getId()."&membre_id=".$user->getId()."'><li class='message'>".$value->getTitre()."</li></a>";
+                    echo "<a href='index.php?action=crea_mess&sujet_id=".$value->getId()."&membre_id=".$user->getId()."'><li class='message'>".$value->getTitre()."</li></a>";
                 }
+            }
+            else if(is_object($result["data"]["liste"])){
+                echo "<a href='index.php?action=crea_mess&sujet_id=".$result["data"]["liste"]->getId()."&membre_id=".$user->getId()."'><li class='message'>".$result["data"]["liste"]->getTitre()."</li></a>";
+                // var_dump($result["data"]["liste"]);die;
+
             }
             else{
                 echo "Soyez le premier à créer un sujet de conversation";
