@@ -9,7 +9,7 @@ else{
 ?>
 <div class="home">
     <div class="connect">
-        <form method="POST" action="">
+        <form method="POST" action="index.php?action=connect">
         <h2>connectez vous:</h2>
             <input type="text" name="pseudo" class="pseudo" required>
             <input type="password" name=password class="password" required>

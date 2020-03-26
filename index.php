@@ -1,7 +1,7 @@
 <?php
     namespace App;
     use Controller\HomeController;
-   
+//    var_dump($_POST);
     define('DS', DIRECTORY_SEPARATOR); // le caractère séparateur de dossier (/ ou \)
     // meilleure portabilité sur les différents systêmes.
     define('BASE_DIR', dirname(__FILE__).DS); // pour se simplifier la vie
@@ -16,27 +16,14 @@
     if(isset($_GET['id'])){
         $id = $_GET['id'];
     }
-    if(isset($_POST["connect"])){
-        $action = "connect";
-        $id = $_POST;
-    }
-    else if(isset($_POST["crea_sujet"])){
-        $action = "crea_sujet";
-        $id=$_POST;
-    }
-    else if(isset($_POST["crea_mess"])){
-        // var_dump($_POST);die;
-        $action = "crea_mess";
-        $id=$_POST;
-    }
-    else if(isset($_GET['action'])){
-        if(isset($_POST["crea"])){
-            $action = "crea";
-            $id = $_POST;
-        }
-        else if($_GET["action"] == "logout"){
-            SESSION::sessionDestroy(); 
-            $action = "index";
+    if(isset($_GET['action'])){
+        // if(isset($_POST["crea"])){
+        //     $action = "crea";
+        //     $id = $_POST;
+        // }
+        if($_GET["action"] == "logout"){
+            // SESSION::sessionDestroy(); 
+            $action = "logout";
         }
         else{
             $action = $_GET['action'];
@@ -66,6 +53,7 @@
         echo($result);
     }
     else{
+        // var_dump($result);
         ob_start();//démarre un buffer (tampon de sortie)
         /*la vue s'affiche dans le buffer qui devra être inséré
         au milieu du template*/

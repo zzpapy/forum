@@ -56,10 +56,11 @@
         }
         
         
+        
         public function add($data){
-            
+            // var_dump($data);die;
             if(isset($data["pseudo"])){
-                
+                // var_dump($data);die;
                 
                 $data["pseudo"] = filter_var ( $data["pseudo"], FILTER_SANITIZE_STRING);
                 $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
@@ -96,8 +97,9 @@
                     ('".implode("','",$values)."')";
                 return DAO::insert($sql);
             }
-            else if(isset($data["content"])){
-                // var_dump($data);
+            else if(isset($data["content"]) && !isset($data["message_id"])){
+                // var_dump(isset($data["content"]) && !isset($data["message_id"]));die;
+               
                 $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
                 $data["sujet_id"] = filter_var ( $data["sujet_id"], FILTER_SANITIZE_STRING);
                 $data["content"] = filter_var ( $data["content"], FILTER_SANITIZE_STRING);
@@ -106,6 +108,25 @@
                 $data["date"] = $date;
                 // var_dump($date);die;
                 unset($data["crea_mess"]);
+                $keys = array_keys($data);
+                $values = array_values($data);
+                // var_dump($data);die;
+                // var_dump($this->tableName);die;
+                
+                $sql = "INSERT INTO ".$this->tableName."
+                    (".implode(',', $keys).")
+                    VALUES
+                    ('".implode("','",$values)."')";
+                return DAO::insert($sql);
+            }
+            else if(!empty($_POST)){
+                // var_dump($data);die;
+                $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
+                $data["message_id"] = filter_var ( $data["message_id"], FILTER_SANITIZE_STRING);
+                $data["content"] = filter_var ( $data["content"], FILTER_SANITIZE_STRING);
+                $date = new \DateTime();
+                $date = date_format($date, 'Y-m-d H:i:s');
+                $data["date"] = $date;
                 $keys = array_keys($data);
                 $values = array_values($data);
                 // var_dump($data);die;
@@ -130,16 +151,6 @@
                     WHERE id_vehicule = ".$id;
             return DAO::update($sql);
         }
-        // public function findByMarque($id){
-        //     $sql = "SELECT *
-        //             FROM ".$this->tableName." a WHERE marque_id = :id";
-        //             // var_dump($id);die;
-        //     return $this->getMultipleResults(
-        //         DAO::select($sql,["id"=>$id]), 
-        //         $this->className
-        //     );
-        // }
-        
         protected function getMultipleResults($rows, $class){
 
             $objects = [];

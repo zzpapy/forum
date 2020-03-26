@@ -70,12 +70,21 @@ h1,h2,h3{
     /* display: flex; */
     justify-content: space-evenly;
 }
-.list_message >div{
-   
+.subMess{
+   border: 1px solid black;
+   width: 75%;
+   margin: auto;
 }
 .message{
     border: 1px solid black;
     background: white;
     box-shadow: 1px 1px 1px;
+    padding: 1em;
     margin: 0.5em;
+}
+.subMess{
+    width: 75%;
+    margin: 0.5em auto;
+    padding: 1em;
+    /* margin-bottom: 0.5em; */
 }
