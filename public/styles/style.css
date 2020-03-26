@@ -89,7 +89,7 @@ h1,h2{
    width: 100%;
    margin: auto;
    box-shadow: 10px 10px 10px var(--color);
-   margin-bottom: 1em;
+   /* margin-bottom: 1em; */
 }
 .message{
     border: 1px solid var(--color);
@@ -98,6 +98,7 @@ h1,h2{
     padding: 1em;
     box-shadow: 10px 10px 10px var(--color);
     margin-bottom: 2em;
+    /* font-size: 1.5em; */
 }
 .sub{
     background: white;
@@ -106,9 +107,16 @@ h1,h2{
 .bordure{
     background: white;
     border: 1px solid var(--color);
+    padding: 1em;
     z-index: 1;
 }
-
+.bordure>div:nth-child(2){
+    font-size: 2em;
+    padding: 1em;
+}
+.bordure>div:nth-child(2) p{
+    margin: 0;
+}
 .subMess{
     width: 75%;
     padding: 1em;
