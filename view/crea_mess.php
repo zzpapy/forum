@@ -41,18 +41,19 @@ else{
                     $id_mess = $value->getId();
                    
                     echo "<div class='message'>";
+                    echo "<div class='bordure'>";
                     echo "<div class='head_mess'>";
                     echo "<p>Auteur :".$value->getMembre()->getPseudo()."</p>";
                     echo "id message :".$id_mess."";
                     $date = new \DateTime($value->getDate());
                     $date = $date->format('d/m/Y H:i');
                     echo "<p>date :".$date."</p></div>";
-                    echo "<div> contenu:<br><p>".$value->getContent()."<p></div>";
+                    echo "<div> message:<br><p class='content'>".$value->getContent()."<p></div>";
                     echo "<div class='subMess'>";
                     echo "<h3>commentaires</h3>";
                     echo "<div><span>ajouter un commentaire à cette publication</span>"; 
                     echo "<form action='index.php?action=subMess&sujet_id=".$sujet_id."' method='POST'>";
-                    echo "<input type='text' name='content' value=''>";
+                    echo "<input class='input' type='text' name='content' value=''>";
                     // var_dump("toto ",$id_mess);
                     echo ' <input type="hidden" name="membre_id" value="'.$id.'">
                     <input type="hidden" name="message_id" value="'.$id_mess.'">';
@@ -71,7 +72,7 @@ else{
                                 $date = new \DateTime($value->getDate());
                                 $date = $date->format('d/m/Y H:i');
                                 echo "<p>date :".$date."</p></div>";
-                                echo "<div>contenu:<br><p>".$value->getContent()."</p></div>";
+                                echo "<div>contenu:<br><p class='content'>".$value->getContent()."</p></div>";
                                 // echo "<div>id submes : ".$value->getId()."</div>";
                                 echo "</div>";
                             }
@@ -81,7 +82,7 @@ else{
                     else{
                         echo " encore auncun commentaires !!!";
                     }
-                    
+                    echo "</div>";
                     echo "</div>";
                     $i++;
                 }

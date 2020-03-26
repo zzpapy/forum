@@ -14,7 +14,7 @@
             $user = unserialize($_SESSION["user"]);
             if(isset($result["data"]["liste"]) && !is_object($result["data"]["liste"])){
                 foreach ($result["data"]["liste"] as $key => $value) {
-                    echo "<a href='index.php?action=crea_mess&sujet_id=".$value->getId()."&membre_id=".$user->getId()."'><li class='message'>".$value->getTitre()."</li></a>";
+                    echo "<a href='index.php?action=crea_mess&sujet_id=".$value->getId()."&membre_id=".$user->getId()."'><li class='message sub'>".$value->getTitre()."</li></a>";
                 }
             }
             else if(is_object($result["data"]["liste"])){

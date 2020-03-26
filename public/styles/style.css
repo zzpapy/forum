@@ -1,7 +1,12 @@
+:root {
+    --main-color: rgb(150,150,150,0.5);
+    --color: black;
+  }
 *{
     box-sizing: border-box;
 }
 .wrapper{
+    /* font-size: 1.5em; */
     /* width: 75%; */
     margin: auto;
     font-family: 'Open Sans', sans-serif;
@@ -9,9 +14,10 @@
 .sticky{
     position: sticky;
     top: 0px;
-    border: 1px solid black;
+    border: 1px solid var(--color);
     box-shadow: 1px 1px 1px;
-    background: #aaa;
+    background: rgb(43, 42, 42);
+    color: white;
     padding: 1em;
 }
 .sticky h1{
@@ -28,12 +34,14 @@
 .head span:nth-child(odd){
     background: white;
     padding: 0 1em;
-    border: 1px solid black;
+    border: 1px solid var(--color);
     box-shadow: 1px 1px 1px;
 }
 .input{
     width: 80%;
     line-height: 3em;
+    border: 1px solid var(--color);
+    box-shadow: 1px 1px 1px;
 }
 .head span{
     /* padding: 1em; */
@@ -42,10 +50,11 @@
 .head_mess{
     display: flex;
     justify-content: space-evenly;
+    background: rgb(150,150,150,0.5);
 }
 a{
   text-decoration: none; 
-  color: black; 
+  color: var(--color); 
 }
 .crea_mess{
     position: sticky;
@@ -59,35 +68,52 @@ a{
     margin: auto;
     text-align: center;
     padding: 1em;
-    background: ivory;
+    background: #aaa;
+    margin-top: -1em;
 }
 ul{
     list-style: none;
     font-size: 2em;
     padding: 0;
 }
-h1,h2,h3{
+h1,h2{
     text-align: center;
+    margin: 0;
 }
 .list_message{
     /* display: flex; */
     justify-content: space-evenly;
 }
 .subMess{
-   border: 1px solid black;
-   width: 75%;
+   border: 1px solid var(--color);
+   width: 100%;
    margin: auto;
+   box-shadow: 10px 10px 10px var(--color);
+   margin-bottom: 1em;
 }
 .message{
-    border: 1px solid black;
-    background: white;
+    border: 1px solid var(--color);
+    background: var(--color);
     box-shadow: 1px 1px 1px;
     padding: 1em;
-    margin: 0.5em;
+    box-shadow: 10px 10px 10px var(--color);
+    margin-bottom: 2em;
 }
+.sub{
+    background: white;
+    margin: 1em;
+}
+.bordure{
+    background: white;
+    border: 1px solid var(--color);
+    z-index: 1;
+}
+
 .subMess{
     width: 75%;
-    margin: 0.5em auto;
     padding: 1em;
     /* margin-bottom: 0.5em; */
+}
+.content{
+    font-size: 2em;
 }
