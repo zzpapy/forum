@@ -125,3 +125,20 @@ h1,h2{
 .content{
     font-size: 2em;
 }
+
+.list_emoji{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    position: fixed;
+    background: var(--main-color);
+    margin-left: 5em;
+}
+.hide{
+    display: none;
+}
+.list_emoji div span{
+    cursor: pointer;
+}
+
+

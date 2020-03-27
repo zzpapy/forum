@@ -79,7 +79,7 @@
                                 "liste"=>$sujets,
                                 ]
                             ];
-                    }                      
+                    }                   
                     else{
                     return [
                         "view" => VIEW_DIR."home.php" ,
@@ -87,6 +87,12 @@
                     ];
                 }
             }
+            else{
+                return [
+                    "view" => VIEW_DIR."home.php" ,
+                    "data" => "le mot de passe ou le pseudo est incorrect !!!"                       
+                ];
+            }   
         }
         public function logout(){
             // var_dump($result);
@@ -99,6 +105,7 @@
         public function crea_sujet($id){
             $man = new SujetManager();
             $sujet = $man->add($_POST);  
+            // var_dump($sujet);die;
             $sujets = $man->findAll(); 
             // var_dump($sujet);die;
             header(('location:index.php?action=crea_mess&membre_id='.unserialize($_SESSION["user"])->getId().'&sujet_id='.$sujet.''));
@@ -108,19 +115,30 @@
             ];
         }
         public function crea_mess($id){
-            // var_dump($_POST);die;
-            $man = new MessageManager();
-            $log = $man->add($_POST);  
-            $mess = $man->findBySujet($_GET["sujet_id"]);
-            $man = new SujetManager();
-            $sujet = $man->findOneById($_GET["sujet_id"])->getTitre();
-            $sub = new SubMessManager();
-            $sub_mess = $sub->findAll();
-
-            return [
-                "view" => VIEW_DIR."crea_mess.php",
-                "data" => [$mess,"sujet" => $sujet,"subMess"=>$sub_mess]
-            ];
+            if($_GET["sujet_id"] != ''){
+                $man = new MessageManager();
+                $log = $man->add($_POST);  
+                $mess = $man->findBySujet($_GET["sujet_id"]);
+                $man = new SujetManager();
+                $sujets = $man->findAll(); 
+                $sujet = $man->findOneById($_GET["sujet_id"])->getTitre();
+                $sub = new SubMessManager();
+                $sub_mess = $sub->findAll();
+                
+                // var_dump($log);die;
+                return [
+                    "view" => VIEW_DIR."crea_mess.php",
+                    "data" => [$mess,"sujet" => $sujet,"subMess"=>$sub_mess]
+                ];
+            }
+            else{
+                $man = new SujetManager();
+                $sujets = $man->findAll(); 
+                return [
+                    "view" => VIEW_DIR."sujet.php",
+                    "data" => ["liste"=>$sujets]
+                ];
+            }
         }
         public function subMess(){
             $sub = new SubMessManager();

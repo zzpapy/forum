@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 26 mars 2020 à 08:39
+-- Généré le : ven. 27 mars 2020 à 13:39
 -- Version du serveur :  5.7.24
 -- Version de PHP : 7.2.19
 
@@ -40,9 +40,8 @@ CREATE TABLE `membre` (
 
 INSERT INTO `membre` (`id_membre`, `pseudo`, `password`) VALUES
 (1, 'zzpapy', '$2y$10$tCwzHObhirsVPPXxbzifzusdUAxMyIYkiNGKr1vO2M7tU1Rhg7XMO'),
-(2, 'moi', '$2y$10$VOs0dzmkEa.ckGSVOr35peTeoVtlnGCG6aobeU/cxS5MSTZhcbAHO'),
 (3, 'a', '$2y$10$2rH612FmyGoaGYCCCV6X6eGGnQqxTyo7GwUemL5aDJzE5lq3VLhlG'),
-(5, 'nouveau', '$2y$10$bzQ2xinaj1KEHePLjGOuCORKt.KAdL2Zqa3tyYGrFJfPoSmNIzMNi');
+(6, 'user1', '$2y$10$7thxXC9eiJaoCXnoQgtCr.O.IfcwTarwOSQg3AEczU1M0q4w9CAwG');
 
 -- --------------------------------------------------------
 
@@ -63,86 +62,53 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`id_message`, `content`, `membre_id`, `sujet_id`, `date`) VALUES
-(31, 'bhbhbhhbh', 1, 2, NULL),
-(32, 'bhbhbhhbh', 1, 2, NULL),
-(33, 'bhbhbhhbh', 1, 2, NULL),
-(34, 'test', 1, 1, NULL),
-(35, 'test', 1, 1, NULL),
-(36, 'test', 1, 1, NULL),
-(37, 'test', 1, 1, NULL),
-(38, 'test', 1, 1, NULL),
-(39, 'test', 1, 1, NULL),
-(40, 'fff', 1, 1, NULL),
-(41, 'essai de message sur sujet vide ', 1, 11, NULL),
-(42, 'essai de message sur sujet vide ', 1, 11, NULL),
-(43, 'u', 1, 11, NULL),
-(44, 'j', 1, 11, NULL),
-(45, 'iuebzfuazerfyeaufhzeruezyuerfuerb\r\nerferfieujrvuiezrviuheghierhgiue\r\nerveuivroebvbezv', 1, 1, NULL),
-(46, 'iuebzfuazerfyeaufhzeruezyuerfuerb\r\nerferfieujrvuiezrviuheghierhgiue\r\nerveuivroebvbezv', 1, 1, NULL),
-(47, 'iuebzfuazerfyeaufhzeruezyuerfuerb\r\nerferfieujrvuiezrviuheghierhgiue\r\nerveuivroebvbezv', 1, 1, NULL),
-(48, 'iuebzfuazerfyeaufhzeruezyuerfuerb\r\nerferfieujrvuiezrviuheghierhgiue\r\nerveuivroebvbezv', 1, 1, NULL),
-(49, 'iuebzfuazerfyeaufhzeruezyuerfuerb\r\nerferfieujrvuiezrviuheghierhgiue\r\nerveuivroebvbezv', 1, 1, NULL),
-(50, 'iuebzfuazerfyeaufhzeruezyuerfuerb\r\nerferfieujrvuiezrviuheghierhgiue\r\nerveuivroebvbezv', 1, 1, NULL),
-(51, 'jiuhhibbbttgregert\r\ngrtgrtegertgertgertgr\r\ngrtgrtgretgrtgrtgertg\r\ntrgretgrtegertgrtegre\r\ngrtgertgrtgrtrteerth\r\nrtgrtgrthrtehrtehrehr\r\nrhrtherthertherthertherthert\r\nrthtrh\r\nrthet\r\nreerhertherthertherth\r\nth\r\netrhtr\r\nert\r\nert\r\nh\r\nrthetrehtrhtrhrtththrether', 1, 1, NULL),
-(52, 'jiuhhibbbttgregert\r\ngrtgrtegertgertgertgr\r\ngrtgrtgretgrtgrtgertg\r\ntrgretgrtegertgrtegre\r\ngrtgertgrtgrtrteerth\r\nrtgrtgrthrtehrtehrehr\r\nrhrtherthertherthertherthert\r\nrthtrh\r\nrthet\r\nreerhertherthertherth\r\nth\r\netrhtr\r\nert\r\nert\r\nh\r\nrthetrehtrhtrhrtththrether', 1, 1, NULL),
-(53, 'jiuhhibbbttgregert\r\ngrtgrtegertgertgertgr\r\ngrtgrtgretgrtgrtgertg\r\ntrgretgrtegertgrtegre\r\ngrtgertgrtgrtrteerth\r\nrtgrtgrthrtehrtehrehr\r\nrhrtherthertherthertherthert\r\nrthtrh\r\nrthet\r\nreerhertherthertherth\r\nth\r\netrhtr\r\nert\r\nert\r\nh\r\nrthetrehtrhtrhrtththrether', 1, 1, NULL),
-(54, 'a', 1, 1, NULL),
-(55, 'a', 1, 1, NULL),
-(56, 'a', 1, 1, NULL),
-(57, 'a', 1, 1, NULL),
-(58, 'a', 1, 1, NULL),
-(59, 'jiuhhibbbttgregert\r\ngrtgrtegertgertgertgr\r\ngrtgrtgretgrtgrtgertg\r\ntrgretgrtegertgrtegre\r\ngrtgertgrtgrtrteerth\r\nrtgrtgrthrtehrtehrehr\r\nrhrtherthertherthertherthert\r\nrthtrh\r\nrthet\r\nreerhertherthertherth\r\nth\r\netrhtr\r\nert\r\nert\r\nh\r\nrthetrehtrhtrhrtththrether', 1, 1, NULL),
-(60, 'test moii', 2, 1, NULL),
-(61, 'e', 1, 1, NULL),
-(62, 'd', 1, 1, NULL),
-(63, 'f', 1, 1, NULL),
-(64, 'h', 1, 1, NULL),
-(65, 'e', 1, 1, NULL),
-(66, 'hzebfuyzebcuy', 1, 1, NULL),
-(67, 'e', 1, 1, '2020-03-25 00:00:00'),
-(68, 'e', 1, 1, '2020-03-25 00:00:00'),
-(69, 'e', 1, 1, '2020-03-25 00:00:00'),
-(70, 'e', 1, 1, '2020-03-25 18:59:14'),
-(71, 'e', 1, 1, '2020-03-25 18:59:33'),
-(72, 'rt', 1, 1, '2020-03-25 19:00:11'),
-(73, 'rt', 1, 1, '2020-03-25 19:01:01'),
-(74, 'rt', 1, 1, '2020-03-25 19:01:17'),
-(75, 'test', 1, 12, '2020-03-25 19:28:38'),
-(76, 'test', 1, 12, '2020-03-25 19:28:42'),
-(77, 'test', 1, 14, '2020-03-25 19:38:57'),
-(78, 'test', 1, 14, '2020-03-25 19:39:01'),
-(79, 'test(', 1, 14, '2020-03-25 19:39:08'),
-(80, 't', 1, 15, '2020-03-25 19:40:50'),
-(81, 't', 1, 15, '2020-03-25 19:40:55'),
-(82, 'c', 1, 15, '2020-03-25 19:42:26'),
-(83, 'c', 1, 15, '2020-03-25 19:48:22'),
-(84, 'c', 1, 15, '2020-03-25 19:49:10'),
-(85, 'c', 1, 15, '2020-03-25 19:49:24'),
-(86, 'c', 1, 15, '2020-03-25 20:13:24'),
-(87, 'c', 1, 15, '2020-03-25 20:14:03'),
-(88, 'c', 1, 15, '2020-03-25 20:14:27'),
-(89, 'c', 1, 15, '2020-03-25 20:16:27'),
-(90, 'c', 1, 15, '2020-03-25 20:16:51'),
-(91, 'c', 1, 15, '2020-03-25 20:17:22'),
-(92, 'c', 1, 15, '2020-03-25 20:17:38'),
-(93, 'c', 1, 15, '2020-03-25 20:19:50'),
-(94, 'c', 1, 15, '2020-03-25 20:20:03'),
-(95, 'c', 1, 15, '2020-03-25 20:20:56'),
-(96, 'c', 1, 15, '2020-03-25 20:21:11'),
-(97, 'c', 1, 15, '2020-03-25 20:21:57'),
-(98, 'c', 1, 15, '2020-03-25 20:22:18'),
-(99, 'c', 1, 15, '2020-03-25 20:22:30'),
-(100, 'ubefruyeabbfuyez', 1, 2, '2020-03-25 20:50:33'),
-(101, 'erferfzefze', 1, 2, '2020-03-25 20:50:40'),
-(102, 'ergergergzergze', 1, 17, '2020-03-26 07:24:41'),
-(103, 'ergergergzergze', 1, 17, '2020-03-26 07:27:07'),
-(104, 'yhyhyyh', 1, 1, '2020-03-26 07:29:04'),
-(105, '', 1, 17, '2020-03-26 07:30:29'),
-(106, 'yhyhyyh', 1, 1, '2020-03-26 07:31:21'),
-(107, 'a', 1, 13, '2020-03-26 07:31:36'),
-(108, 'd', 1, 13, '2020-03-26 07:34:05'),
-(109, 'c', 1, 13, '2020-03-26 07:34:09'),
-(110, 'test nouveau', 5, 1, '2020-03-26 07:57:06');
+(172, 'youpi', 1, 52, '2020-03-26 18:07:47'),
+(173, 'jhsbvoyheoyrbfoyueagoye erg er gerygeryugroy goayr garory goar ga aoyrg aozyg p hmzehOUGHMOehzmu zem ', 3, 51, '2020-03-26 18:51:08'),
+(174, 'jhsbvoyheoyrbfoyueagoye erg er gerygeryugroy goayr garory goar ga aoyrg aozyg p hmzehOUGHMOehzmu zem ', 3, 51, '2020-03-26 18:51:28'),
+(175, 'jhsbvoyheoyrbfoyueagoye erg er gerygeryugroy goayr garory goar ga aoyrg aozyg p hmzehOUGHMOehzmu zem ', 3, 51, '2020-03-26 18:52:08'),
+(176, 'jhsbvoyheoyrbfoyueagoye erg er gerygeryugroy goayr garory goar ga aoyrg aozyg p hmzehOUGHMOehzmu zem ', 3, 51, '2020-03-26 18:52:39'),
+(177, 'aaaa', 3, 51, '2020-03-26 21:22:19'),
+(178, 'aaaa', 3, 51, '2020-03-26 21:22:37'),
+(179, 'aaaa', 3, 51, '2020-03-26 21:23:56'),
+(180, 'aaaa', 3, 51, '2020-03-26 21:24:47'),
+(181, 'aaaa', 3, 51, '2020-03-26 21:25:28'),
+(182, 'aaaa', 3, 51, '2020-03-26 21:26:37'),
+(183, 'aaaa', 3, 51, '2020-03-26 21:27:38'),
+(184, 'aaaa', 3, 51, '2020-03-26 21:29:02'),
+(185, 'aaaa', 3, 51, '2020-03-26 21:30:25'),
+(186, 'aaaa', 3, 51, '2020-03-26 21:31:01'),
+(187, 'aaaa', 3, 51, '2020-03-26 21:31:30'),
+(188, 'test', 6, 56, '2020-03-27 13:26:51'),
+(189, 'a', 6, 56, '2020-03-27 13:27:33'),
+(190, 'a', 6, 56, '2020-03-27 13:27:47'),
+(191, 'a', 6, 56, '2020-03-27 13:28:06'),
+(192, 'cei est le premier message du sujet écrit par user 1', 6, 56, '2020-03-27 13:28:55'),
+(193, 'cei est le premier message du sujet écrit par user 1', 6, 56, '2020-03-27 13:29:40'),
+(194, 'ceci est est second message écrit par zzpapy qui ne comprend pas pourquoi il affiche >2 fois ce message alors qu&#39;il n&#39;est stocker qu&#39;une fois en bdd', 1, 56, '2020-03-27 13:31:41');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `submess`
+--
+
+CREATE TABLE `submess` (
+  `id_submess` int(11) NOT NULL,
+  `content` text COLLATE utf8_bin NOT NULL,
+  `message_id` int(11) NOT NULL,
+  `membre_id` int(11) NOT NULL,
+  `date` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `submess`
+--
+
+INSERT INTO `submess` (`id_submess`, `content`, `message_id`, `membre_id`, `date`) VALUES
+(134, 'ceci est test de commentaires par zzpapy', 194, 1, '2020-03-27 12:32:04'),
+(135, 'on essaye encore une fois', 194, 1, '2020-03-27 12:32:25'),
+(136, 'et maintenant...', 194, 1, '2020-03-27 12:32:42'),
+(137, 'voici un commentaire de user1', 194, 6, '2020-03-27 12:33:15');
 
 -- --------------------------------------------------------
 
@@ -154,7 +120,7 @@ CREATE TABLE `sujet` (
   `id_sujet` int(11) NOT NULL,
   `titre` text COLLATE utf8_bin NOT NULL,
   `membre_id` int(11) NOT NULL,
-  `date` date DEFAULT NULL
+  `date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -162,18 +128,9 @@ CREATE TABLE `sujet` (
 --
 
 INSERT INTO `sujet` (`id_sujet`, `titre`, `membre_id`, `date`) VALUES
-(1, 'test', 1, NULL),
-(2, 'toto', 1, NULL),
-(9, 'test', 1, NULL),
-(10, 'test', 1, NULL),
-(11, 'test', 1, NULL),
-(12, 'essai', 1, '2020-03-25'),
-(13, 'essai', 1, '2020-03-25'),
-(14, 'rrrrrr', 1, '2020-03-25'),
-(15, 'rrrrrr', 1, '2020-03-25'),
-(16, 'tttttttt', 1, '2020-03-26'),
-(17, 'tttttttt', 1, '2020-03-26'),
-(18, 'tttttttt', 1, '2020-03-26');
+(51, 'test1', 1, '2020-03-26 17:01:39'),
+(52, 'un autre', 1, '2020-03-26 18:07:35'),
+(56, 'Ceci est un nouveau sujet créer par user 1', 6, '2020-03-27 13:25:10');
 
 --
 -- Index pour les tables déchargées
@@ -195,6 +152,14 @@ ALTER TABLE `message`
   ADD KEY `id_sujet` (`sujet_id`);
 
 --
+-- Index pour la table `submess`
+--
+ALTER TABLE `submess`
+  ADD PRIMARY KEY (`id_submess`),
+  ADD KEY `id_user` (`membre_id`),
+  ADD KEY `submess_ibfk_1` (`message_id`);
+
+--
 -- Index pour la table `sujet`
 --
 ALTER TABLE `sujet`
@@ -209,19 +174,25 @@ ALTER TABLE `sujet`
 -- AUTO_INCREMENT pour la table `membre`
 --
 ALTER TABLE `membre`
-  MODIFY `id_membre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_membre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
+
+--
+-- AUTO_INCREMENT pour la table `submess`
+--
+ALTER TABLE `submess`
+  MODIFY `id_submess` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT pour la table `sujet`
 --
 ALTER TABLE `sujet`
-  MODIFY `id_sujet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_sujet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Contraintes pour les tables déchargées
@@ -233,6 +204,12 @@ ALTER TABLE `sujet`
 ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`membre_id`) REFERENCES `membre` (`id_membre`),
   ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`sujet_id`) REFERENCES `sujet` (`id_sujet`);
+
+--
+-- Contraintes pour la table `submess`
+--
+ALTER TABLE `submess`
+  ADD CONSTRAINT `submess_ibfk_1` FOREIGN KEY (`message_id`) REFERENCES `message` (`id_message`);
 
 --
 -- Contraintes pour la table `sujet`

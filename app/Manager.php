@@ -76,11 +76,8 @@
                 return DAO::insert($sql);
             }
             else if(isset( $data["titre"])){
-                // $data = array(
-                    //     'id'    => FILTER_VALIDATE_INT,                    
-                    //     'titre'   => FILTER_SANITIZE_STRING
-                    // );
-                    // var_dump($data);
+                // var_dump($data);die;
+                if($data["titre"] != ''){
                     $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
                     $data["titre"] = filter_var ( $data["titre"], FILTER_SANITIZE_STRING);
                     unset($data["crea_sujet"]);
@@ -89,13 +86,14 @@
                     $data["date"] = $date;
                     // var_dump($data);die;
                     $keys = array_keys($data);
-                $values = array_values($data);
-                
-                $sql = "INSERT INTO ".$this->tableName."
-                    (".implode(',', $keys).")
-                    VALUES
-                    ('".implode("','",$values)."')";
-                return DAO::insert($sql);
+                    $values = array_values($data);
+                    
+                    $sql = "INSERT INTO ".$this->tableName."
+                        (".implode(',', $keys).")
+                        VALUES
+                        ('".implode("','",$values)."')";
+                    return DAO::insert($sql);
+                }
             }
             else if(isset($data["content"]) && !isset($data["message_id"])){
                 $_POST = '';

@@ -1,6 +1,7 @@
 <?php 
 if(isset($_GET["sujet_id"])){
     $sujet_id = $_GET["sujet_id"];
+    // var_dump($_SESSION);die;
     $id = unserialize($_SESSION["user"])->getId();
     if(isset($result["data"]["subMess"])){
         $subMess = $result["data"]["subMess"];
@@ -22,7 +23,7 @@ else{
         <form action="index.php?action=crea_mess&sujet_id=<?php echo $sujet_id ?>" method="POST">
             <input type="hidden" name="membre_id" value="<?= $id ?>">
             <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
-            <input type="text" class="input" name="content">
+            <span class="open">😀</span><input type="text" class="input emo" name="content"><div class="list_emoji hide"></div>
             <!-- <textarea name="content" id="" cols="50" rows="10"></textarea> -->
             <input type="submit" name="crea_mess">
         </form>
