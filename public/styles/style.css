@@ -5,6 +5,10 @@
 *{
     box-sizing: border-box;
 }
+body{
+    margin: 0;
+    background:#aaa;;
+}
 .wrapper{
     /* font-size: 1.5em; */
     /* width: 75%; */
@@ -31,11 +35,19 @@
     margin-bottom: -1em;
     margin-bottom: 0.2em;
 }
-.head span:nth-child(odd){
+.head span{
     background: white;
     padding: 0 1em;
     border: 1px solid var(--color);
     box-shadow: 1px 1px 1px;
+    color: black;
+}
+.recherche{
+   text-align: center;
+}
+#choix{
+    width: 15em;
+    height: 15em;
 }
 .input{
     width: 80%;
@@ -45,7 +57,7 @@
 }
 .head span{
     /* padding: 1em; */
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
 }
 .head_mess{
     display: flex;
@@ -69,12 +81,19 @@ a{
     text-align: center;
     padding: 1em;
     background: #aaa;
-    margin-top: -1em;
+    /* margin-top: -1em; */
 }
 ul{
     list-style: none;
-    font-size: 2em;
+    /* font-size: 2em; */
     padding: 0;
+}
+ul a{
+}
+ul a li{
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
 }
 h1,h2{
     text-align: center;
@@ -89,6 +108,7 @@ h1,h2{
    width: 100%;
    margin: auto;
    box-shadow: 10px 10px 10px var(--color);
+   padding: 1em;
    /* margin-bottom: 1em; */
 }
 .message{
@@ -98,30 +118,36 @@ h1,h2{
     padding: 1em;
     box-shadow: 10px 10px 10px var(--color);
     margin-bottom: 2em;
+    /* display: flex;
+    justify-content: space-evenly; */
     /* font-size: 1.5em; */
 }
 .sub{
     background: white;
     margin: 1em;
 }
+.block_mess{
+    display :flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .bordure{
     background: white;
     border: 1px solid var(--color);
     padding: 1em;
-    z-index: 1;
+    width: 40%;
+    margin: 0.5em;
+    margin: auto;
+    overflow-x: scroll;
 }
 .bordure>div:nth-child(2){
-    font-size: 2em;
+    /* font-size: 2em; */
     padding: 1em;
 }
 .bordure>div:nth-child(2) p{
     margin: 0;
 }
-.subMess{
-    width: 75%;
-    padding: 1em;
-    /* margin-bottom: 0.5em; */
-}
+
 .content{
     font-size: 2em;
 }
@@ -140,5 +166,44 @@ h1,h2{
 .list_emoji div span{
     cursor: pointer;
 }
+.affich{
+    border: 1px solid black;
+    background: white;
+    width: 50%;
+    margin: auto;
+}
+@media screen and (max-width: 640px) {
+    .bordure{
+      width: 100%;
+    }
+    .form_flex{
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+        margin: 2em auto;
+    }
+    .form_flex input{
+        margin-top: 1em;
+        line-height: 2em;
+    }
+    .crea_mess > h2{
+        font-size: 1em;
+        top: 11em;
+    }
+    .crea_mess{
+        top:11em;
+    }
+    .message{
+        font-size: 1em;
+        display: flex;
+        flex-direction: column;
+    }
+    .affich{
+        position: absolute;
+        top:15em;
+        z-index: 1;
+        left: 6em;
+    }
+  }
 
 

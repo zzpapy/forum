@@ -10,7 +10,10 @@
         }
         public static function sessionDestroy(){
             session_destroy();
-		}
+            }
+            public static function sessionAdmin(){
+                  return $_SESSION["admin"] = 1;
+            }
  
 
 	}

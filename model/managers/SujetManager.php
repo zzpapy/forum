@@ -19,4 +19,12 @@
         public function findOneById($id){
             return parent::findOneById($id);
         }
+        public function deleteSujet($id){
+            $sql = "DELETE FROM ".$this->tableName." WHERE id_sujet=".$id;
+            // var_dump($this->tableName);die;
+            return $this->getMultipleResults(
+                DAO::delete($sql), 
+                $this->className
+            );
+        }
     }

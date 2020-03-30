@@ -58,6 +58,13 @@
             $stmt->closeCursor();
             return ($result == false) ? null : $result;
         }
+        public static function delete($sql){
+            $stmt = self::$bdd->prepare($sql);
+            // var_dump($stmt);die;
+            // var_dump($stmt);
+            $result = $stmt->execute();
+            $stmt->closeCursor();
+        }
 
         /**
          * Cette méthode permet les requêtes de type SELECT
@@ -70,6 +77,7 @@
          */
         public static function select($sql, $params = null, bool $multiple = true)
         {
+            // var_dump($sql);
             try{
                 $stmt = self::$bdd->prepare($sql);
                 $stmt->execute($params);

@@ -58,7 +58,7 @@ final class Message extends Entity{
     /**
      * Get the value of sujet
      */ 
-    public function getsujet()
+    public function getSujet()
     {
         return $this->sujet;
     }
@@ -68,7 +68,7 @@ final class Message extends Entity{
      *
      * @return  self
      */ 
-    public function setsujet($sujet)
+    public function setSujet($sujet)
     {
         $this->sujet = $sujet;
 

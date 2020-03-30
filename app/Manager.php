@@ -11,7 +11,7 @@
 
             $sql = "SELECT *
                     FROM ".$this->tableName." a
-                    ORDER BY date DESC";
+                    ORDER BY date DESc";
        
             return $this->getMultipleResults(
                 DAO::select($sql), 
@@ -54,6 +54,16 @@
                 $this->className
             );
         }
+        // public function findByMessSujet($sujet_id){
+        //     $sql = "SELECT *
+        //             FROM ".$this->tableName." v WHERE v.sujet_id = :id
+        //             ORDER BY id_message DESC";
+
+        //     return $this->getMultipleResults(
+        //         DAO::select($sql, ['id' => $sujet_id]), 
+        //         $this->className
+        //     );
+        // }
         
         
         
@@ -110,6 +120,7 @@
                     $values = array_values($data);
                     // var_dump($data);die;
                     // var_dump($this->tableName);die;
+                    // var_dump($data);die;
                     
                     $sql = "INSERT INTO ".$this->tableName."
                     (".implode(',', $keys).")
@@ -142,15 +153,7 @@
                 }
             }
         }
-        public function update($data,$id){
-            // var_dump($data);die;
-            $keys = array_keys($data);
-            $values = array_values($data);
-            $sql = "UPDATE ".$this->tableName."
-                    SET ".implode($keys)."=".json_encode(implode($values))."
-                    WHERE id_vehicule = ".$id;
-            return DAO::update($sql);
-        }
+        
         protected function getMultipleResults($rows, $class){
 
             $objects = [];
@@ -179,12 +182,11 @@
             return false;
         }
         public function recherche($char){
-
-            $sql = " SELECT a.immat, a.id_vehicule, a.photo
-                    FROM ".$this->tableName." a
-                    WHERE a.immat LIKE '%". $char ."%'";
-                    // var_dump($char);die;
-
+            // var_dump($this->tableName);die;
+            $sql = " SELECT a.*
+                    FROM ".$this->tableName." a 
+                    WHERE a.titre LIKE '%". $char ."%'";
+                    // var_dump($sql);die;
             return $this->getMultipleResults(
                 DAO::select($sql), 
                 $this->className

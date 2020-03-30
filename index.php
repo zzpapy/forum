@@ -1,7 +1,7 @@
 <?php
     namespace App;
     use Controller\HomeController;
-//    var_dump($_POST);
+//    var_dump(DIRECTORY_SEPARATOR);
     define('DS', DIRECTORY_SEPARATOR); // le caractère séparateur de dossier (/ ou \)
     // meilleure portabilité sur les différents systêmes.
     define('BASE_DIR', dirname(__FILE__).DS); // pour se simplifier la vie
@@ -18,33 +18,24 @@
     }
     if(isset($_GET['action'])){
         // if(isset($_POST["crea"])){
-        //     $action = "crea";
-        //     $id = $_POST;
-        // }
-        if($_GET["action"] == "logout"){
-            // SESSION::sessionDestroy(); 
-            $action = "logout";
+            //     $action = "crea";
+            //     $id = $_POST;
+            // }
+            if($_GET["action"] == "logout"){
+                // SESSION::sessionDestroy(); 
+                $action = "logout";
+            }
+            else{
+                $action = $_GET['action'];
+            }
         }
-        else{
-            $action = $_GET['action'];
-        }
-    }
-    else $action = "index"; 
+        else $action = "index"; 
+        // var_dump($action,$id);die;
    
     
     
     $result = $ctrl->$action($id);
-    // var_dump($result);
-    if(isset($result["data"]["bool"])){
-        if($result["data"]["bool"] == true){
-            SESSION::sessionStart($result["data"]["user"]); 
-            $action = "crea_sujet";
-            // var_dump($result);
-        }
-        else{
-            $action = "index";
-        }
-    }
+    
     // var_dump($result);        
     if($action == "ajax"){//si l'action était ajax
         echo $result;//on affiche directement le return du contrôleur (càd la réponse HTTP sera uniquement celle-ci)

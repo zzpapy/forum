@@ -11,3 +11,41 @@ $(".img").on('click',function(){
 $(".open").on('click',function(){
     $(".list_emoji").toggleClass('hide')
 })
+$("#recherche").on("keyup", function(){
+  console.log( $("#recherche").val())
+  $.get(
+    "index.php?action=recherche",
+    {
+      nb : $("#recherche").val()
+    },
+    function(result){
+      console.log( result)
+      if(result.length == 0){
+          $(".affich").html("aucun résultat")
+      }
+      else{
+          $(".affich").html('')
+        $(".affich").html(result)
+
+      }
+      if($("#recherche").val() == ''){
+          $(".affich").html('')
+      }
+    }
+  )
+})
+$(".change").on("click",function(){
+  $("#choix").click();
+})
+var c = document.getElementById("choix")
+    
+    t = document.getElementById("time")
+    res2 = document.getElementById("result2")
+
+c.addEventListener("input", function() {
+    color = c.value
+    document.documentElement.style.setProperty('--main-color', color)
+    document.documentElement.style.setProperty('--color:', color)
+    $("#choix").click().addClass("hide");
+    console.log(c.value)
+}, false);
