@@ -196,10 +196,10 @@
             $sujets = $man->findAll(); 
             // var_dump($sujet);die;
             header(('location:index.php?action=crea_mess&membre_id='.unserialize($_SESSION["user"])->getId().'&sujet_id='.$sujet.''));
-            return [
-                "view" => VIEW_DIR."crea_sujet.php",
-                "data" => $sujets
-            ];
+            // return [
+            //     "view" => VIEW_DIR."crea_sujet.php",
+            //     "data" => $sujets
+            // ];
         }
         public function crea_mess($id){
             if($_GET["sujet_id"] != ''){
@@ -229,8 +229,8 @@
         }
         public function subMess(){
             $sub = new SubMessManager();
+            // var_dump($_POST);die;
             $test = $sub->add($_POST);
-            // $_POST = '';
             $sub_mess = $sub->findAll();
             // var_dump($test);die;
             $man = new MessageManager();

@@ -1,7 +1,6 @@
 <?php
     namespace App;
     use Controller\HomeController;
-//    var_dump(DIRECTORY_SEPARATOR);
     define('DS', DIRECTORY_SEPARATOR); // le caractère séparateur de dossier (/ ou \)
     // meilleure portabilité sur les différents systêmes.
     define('BASE_DIR', dirname(__FILE__).DS); // pour se simplifier la vie
@@ -31,9 +30,10 @@
         }
         else $action = "index"; 
         // var_dump($action,$id);die;
-   
-    
-    
+        
+        
+        
+        //    var_dump($_POST,$action);die;
     $result = $ctrl->$action($id);
     
     // var_dump($result);        
