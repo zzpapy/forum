@@ -77,7 +77,6 @@
          */
         public static function select($sql, $params = null, bool $multiple = true)
         {
-            // var_dump($sql);
             try{
                 $stmt = self::$bdd->prepare($sql);
                 $stmt->execute($params);
@@ -88,8 +87,6 @@
                     }
                 }
                 else $results = $stmt->fetch();
-                // var_dump($sql);die;
-                // var_dump($results);die;
                 $stmt->closeCursor();
                 return ($results == false) ? null : $results;
             }

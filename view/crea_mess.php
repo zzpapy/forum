@@ -1,8 +1,7 @@
 <?php 
 if(isset($_GET["sujet_id"])){
     $sujet_id = $_GET["sujet_id"];
-    // var_dump($_SESSION);die;
-    $id = unserialize($_SESSION["user"])->getId();
+    $id = $_SESSION["user"]->getId();
     if(isset($result["data"]["subMess"])){
         $subMess = $result["data"]["subMess"];
         
@@ -22,8 +21,8 @@ else{
         <h2>Participez à la discussion</h2>
         <form action="index.php?action=crea_mess&sujet_id=<?php echo $sujet_id ?>" method="POST">
             <input type="hidden" name="membre_id" value="<?= $id ?>">
+            <input type="text" name="content">
             <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
-            <span class="open">😀</span><input type="text" class="input emo" name="content"><div class="list_emoji hide"></div>
             <input type="submit" name="crea_mess">
         </form>
     </div>
@@ -31,12 +30,11 @@ else{
     <h3>liste des messages</h3>
     <div class="block_mess">
         <?php 
-        // var_dump($result["data"]["mess"]);
         $msg = "";
             if($result["data"]["mess"] !=NULL){
                 if(!is_object($result["data"]["mess"])){
                     foreach ($result["data"]["mess"] as $key => $value) {
-                        $user = unserialize($_SESSION["user"]);
+                        $user = $_SESSION["user"];
                         $id_mess = $value->getId();
                         $author = $result["data"]["mess"][0]->getMembre()->getId();
                         $pseudo = $value->getMembre()->getPseudo();
@@ -51,7 +49,7 @@ else{
                 else{
                     $id_mess = $result["data"]["mess"]->getId();
                     $author = $result["data"]["mess"]->getMembre()->getId();
-                    $user = unserialize($_SESSION["user"]);
+                    $user = $_SESSION["user"];
                     $pseudo = $result["data"]["mess"]->getMembre()->getPseudo();
                     $date = $result["data"]["mess"]->getDate();
                     $date = new \DateTime($date);

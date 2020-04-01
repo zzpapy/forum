@@ -7,203 +7,179 @@
 }
 body{
     margin: 0;
-    background:#aaa;;
-}
-.wrapper{
-    /* font-size: 1.5em; */
-    /* width: 75%; */
-    margin: auto;
+    background:white;
     font-family: 'Open Sans', sans-serif;
 }
-.sticky{
-    position: sticky;
-    top: 0px;
-    border: 1px solid var(--color);
-    box-shadow: 1px 1px 1px;
-    background: rgb(43, 42, 42);
-    color: white;
-    padding: 1em;
-}
-.sticky h1{
-    margin: 0;
-}
-.head{
-    display: flex;
-    justify-content: space-evenly;
-    margin:0 auto;
-    align-items: center;
-    margin-bottom: -1em;
-    margin-bottom: 0.2em;
-}
-.head span{
-    background: white;
-    padding: 0 1em;
-    border: 1px solid var(--color);
-    box-shadow: 1px 1px 1px;
-    color: black;
-}
-.recherche{
-   text-align: center;
-}
-#choix{
-    width: 15em;
-    height: 15em;
-}
-.input{
-    width: 80%;
-    line-height: 3em;
-    border: 1px solid var(--color);
-    box-shadow: 1px 1px 1px;
-}
-.head span{
-    /* padding: 1em; */
-    /* font-size: 1.5em; */
-}
-.head_mess{
-    display: flex;
-    justify-content: space-evenly;
-    background: rgb(150,150,150,0.5);
+ul{
+    list-style: none;
+    padding: 0;
 }
 a{
-  text-decoration: none; 
-  color: var(--color); 
+    text-decoration: none;
+    color: black;
 }
-.crea_mess{
-    position: sticky;
-    background: rgb(150,150,150,0.5);
-    margin: auto;
-    top:7em;
+.error{
+ font-size: 1.5em; 
+ color:red;
+ border: 3px solid red;
+ box-shadow: 1px 1px 1px;   
+}
+.list_sujet{
     padding: 1em;
+    flex: 1;
+}
+.list_message{
+    flex:1;
+}
+.list a li{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding-bottom:0.5em;
+    margin-bottom: 1em;
+    background: white;
+    align-items: center;
 }
 .container{
     /* width: 75%; */
     margin: auto;
     text-align: center;
     padding: 1em;
-    background: #aaa;
+    background: white;
     /* margin-top: -1em; */
 }
-ul{
-    list-style: none;
-    /* font-size: 2em; */
-    padding: 0;
-}
-ul a{
-}
-ul a li{
-    display: flex;
-    width: 90%;
-    justify-content: space-evenly;
-}
-h1,h2{
-    text-align: center;
-    margin: 0;
-}
-.list_message{
-    /* display: flex; */
-    justify-content: space-evenly;
-}
-.subMess{
-   border: 1px solid var(--color);
-   width: 100%;
-   margin: auto;
-   box-shadow: 10px 10px 10px var(--color);
-   padding: 1em;
-   /* margin-bottom: 1em; */
-}
-.message{
-    border: 1px solid var(--color);
-    background: var(--color);
-    box-shadow: 1px 1px 1px;
+.home{
     padding: 1em;
-    box-shadow: 10px 10px 10px var(--color);
-    margin-bottom: 2em;
-    /* display: flex;
-    justify-content: space-evenly; */
-    /* font-size: 1.5em; */
+    width: 25%;
+    text-align: left;
 }
-.sub{
-    background: white;
-    margin: 1em;
-}
-.block_mess{
+.content,.sticky,.head{
     display :flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 }
-.bordure{
-    background: white;
-    border: 1px solid var(--color);
+.sticky{
+    position: sticky;
+    top: 0;
     padding: 1em;
-    width: 40%;
-    margin: 0.5em;
-    margin: auto;
-    overflow-x: scroll;
+    background: black;
+    color: white;
 }
-.bordure>div:nth-child(2){
-    /* font-size: 2em; */
-    padding: 1em;
+.crea_mess,.users{
+    position: sticky;
+    top:7.36em;
 }
-.bordure>div:nth-child(2) p{
-    margin: 0;
+.connect {
+    position: sticky;
+    top:20em;
 }
 
-.content{
-    font-size: 2em;
+.sticky a{
+    color: white;
+}
+.head{
+    align-items: center;
+    width: 50%;
+}
+.users{
+    height: 12.5em;
+    overflow-y: scroll;
+    border:2px solid green;
+    border-radius: 15px;
+    text-align: center;
+   /* display: flex;
+   flex-wrap: wrap; */
 }
 
-.list_emoji{
-    display: flex;
-    flex-wrap: wrap;
-    width: 80%;
-    position: fixed;
-    background: var(--main-color);
-    margin-left: 5em;
+.users h4{
+    position: sticky;
+    top: 0;
 }
-.hide{
+.users::-webkit-scrollbar{
     display: none;
 }
-.list_emoji div span{
-    cursor: pointer;
+.sujet_style{
+    width: 100%;
+    text-align: left;
 }
-.affich{
-    border: 1px solid black;
-    background: white;
-    width: 50%;
+.sujet_style > div:first-child{
+    padding: 0.5em;
+    font-size: 1.5em;
+}
+.author{
+    display: flex;
+    /* justify-content: space-between; */
+    padding: 0 1em;
+}
+.author div{
+    margin-right: 2em;
+}
+
+.form_flex{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
     margin: auto;
 }
-@media screen and (max-width: 640px) {
-    .bordure{
-      width: 100%;
-    }
-    .form_flex{
-        display: flex;
-        flex-direction: column;
-        width: 75%;
-        margin: 2em auto;
-    }
-    .form_flex input{
-        margin-top: 1em;
-        line-height: 2em;
-    }
-    .crea_mess > h2{
-        font-size: 1em;
-        top: 11em;
-    }
-    .crea_mess{
-        top:11em;
-    }
-    .message{
-        font-size: 1em;
-        display: flex;
-        flex-direction: column;
-    }
-    .affich{
-        position: absolute;
-        top:15em;
-        z-index: 1;
-        left: 6em;
-    }
-  }
-
-
+.form_flex input{
+    margin-bottom: 1em;
+    line-height: 3em;
+    background: #aaa;
+    border:1px solid green;
+    border-radius: 15px;
+    padding:0 0.5em;
+}
+.message > div:first-child{
+    text-align: left;
+    border: 1px solid #aaa;
+    padding: 1em;
+    background: green;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+}
+.bordure{
+    margin-bottom: 3em;
+    border-bottom:1px solid green;
+    padding: 1em;
+    /* border-radius: 15px; */
+}
+p.bordure{
+    border:1px solid green;
+    font-weight: bold;
+}
+p.bordure a{
+    color: green;
+}
+.bordure >div:nth-child(2){
+    border: 1px solid #aaa;
+    border:2px solid green;
+    margin-top: 1em;
+}
+.head_mess{
+    display: flex;
+    justify-content: space-between;
+    background: rgb(0,128,0,0.5);
+    padding: 0 1em;
+    border-radius: 15px;
+}
+.affich{
+    position:fixed;
+    top: 7em;
+    right: 11em;
+    width: 25%;
+    background: white;
+    border: 1px solid green;
+    z-index: 1;
+}
+.affich div{
+    margin: 1em;
+    border: 1px solid green;
+}
+.content_sub{
+    flex:1;
+    width: 80%;
+    text-align: center;
+}
+.content_sub p{
+    text-align: center;
+}

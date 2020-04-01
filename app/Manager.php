@@ -53,24 +53,10 @@
                 DAO::select($sql, ['id' => $sujet_id]), 
                 $this->className
             );
-        }
-        // public function findByMessSujet($sujet_id){
-        //     $sql = "SELECT *
-        //             FROM ".$this->tableName." v WHERE v.sujet_id = :id
-        //             ORDER BY id_message DESC";
-
-        //     return $this->getMultipleResults(
-        //         DAO::select($sql, ['id' => $sujet_id]), 
-        //         $this->className
-        //     );
-        // }
-        
-        
+        }        
         
         public function add($data){
-            // var_dump($data);die;
             if(isset($data["pseudo"])){
-                // var_dump($data);die;
                 
                 $data["pseudo"] = filter_var ( $data["pseudo"], FILTER_SANITIZE_STRING);
                 $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
@@ -86,7 +72,6 @@
                 return DAO::insert($sql);
             }
             else if(isset( $data["titre"])){
-                // var_dump($data);die;
                 if($data["titre"] != ''){
                     $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
                     $data["titre"] = filter_var ( $data["titre"], FILTER_SANITIZE_STRING);
@@ -94,7 +79,6 @@
                     $date = new \DateTime();
                     $date = date_format($date, 'Y-m-d H:i:s');
                     $data["date"] = $date;
-                    // var_dump($data);die;
                     $keys = array_keys($data);
                     $values = array_values($data);
                     
@@ -114,13 +98,9 @@
                     $date = new \DateTime();
                     $date = date_format($date, 'Y-m-d H:i:s');
                     $data["date"] = $date;
-                    // var_dump($date);die;
                     unset($data["crea_mess"]);
                     $keys = array_keys($data);
                     $values = array_values($data);
-                    // var_dump($data);die;
-                    // var_dump($this->tableName);die;
-                    // var_dump($data);die;
                     
                     $sql = "INSERT INTO ".$this->tableName."
                     (".implode(',', $keys).")
@@ -139,16 +119,13 @@
                     $data["date"] = $date;
                     $keys = array_keys($data);
                     $values = array_values($data);
-                    // var_dump($data);die;
-                    // var_dump($data);die;
-                    // var_dump($this->tableName);die;
                     
                     $sql = "INSERT INTO ".$this->tableName."
                     (".implode(',', $keys).")
                     VALUES
                     ('".implode("','",$values)."')";
                     $_POST = [];
-                    // var_dump(isset($_POST["content"]) && $_POST["content"] != '');die;
+
                     return DAO::insert($sql);
                 }
             }
@@ -159,7 +136,6 @@
             $objects = [];
             if(isset($rows[0])){
                 foreach($rows as $row){
-                    // if(is_array( $row)){}
                     $objects[] = new $class($row);
                 }
             }
@@ -167,7 +143,6 @@
                 return null;
             }
             else{
-                // var_dump(isset($rows[0]));
                 return new $class($rows);
             }
 
@@ -175,18 +150,15 @@
         }
 
         protected function getOneOrNullResult($row, $class){
-            // var_dump($class);die;
             if($row != null){
                 return new $class($row);
             }
             return false;
         }
         public function recherche($char){
-            // var_dump($this->tableName);die;
             $sql = " SELECT a.*
                     FROM ".$this->tableName." a 
                     WHERE a.titre LIKE '%". $char ."%'";
-                    // var_dump($sql);die;
             return $this->getMultipleResults(
                 DAO::select($sql), 
                 $this->className
