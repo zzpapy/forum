@@ -1,9 +1,19 @@
 <div class="home">
     <?php
-        echo "<div class='users'><h4>membres:</h4>";
+        echo "<div class='users'><h4>membres: ".count($_SESSION["users"])."</h4>";
         foreach ($_SESSION["users"] as $key => $value) {
             $user = $value->getPseudo();
-            echo "<div><span>".$user."</span></div>";
+            if(isset($_SESSION["admin"]) && $value->getPseudo() != "zzpapy"){
+                echo "<form class='del_user'action='index.php?action=deleteUser method='POST'>";
+                echo ' <input type="hidden" name="membre_id" value="'.$value->getId().'">';
+                echo "<span>".$user."</span>";
+                echo "<button><span class='delete fas fa-times-circle'></span></button>";
+                echo "</form>";
+            }
+            else{
+                echo "<span>".$user."</span>";
+            }
+
         }
         echo "</div>";
     ?>
@@ -12,6 +22,5 @@
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, laboriosam!</p>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, laboriosam!</p>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, laboriosam!</p>
-        <p class="bordure"><a href="index.php?action=signIn">Vous n'avez pas encore de compte, cliquez ici</a></p>
     </div>
 </div>

@@ -15,7 +15,7 @@ else{
 ?>
 <div class="home">
     <?php
-        echo "<div class='users'><h4>membres:</h4>";
+        echo "<div class='users'><h4>membres: ".count($_SESSION["users"])."</h4>";
         foreach ($_SESSION["users"] as $key => $value) {
             $user = $value->getPseudo();
             echo "<div><span>".$user."</span></div>";

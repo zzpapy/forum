@@ -50,7 +50,6 @@ a{
     /* width: 75%; */
     margin: auto;
     text-align: center;
-    padding: 1em;
     background: white;
     /* margin-top: -1em; */
 }
@@ -72,11 +71,11 @@ a{
 }
 .crea_mess,.users{
     position: sticky;
-    top:7.36em;
+    top:15em;
 }
 .connect {
     position: sticky;
-    top:20em;
+    top:28em;
 }
 
 .sticky a{
@@ -89,11 +88,21 @@ a{
 .users{
     height: 12.5em;
     overflow-y: scroll;
-    border:2px solid green;
     border-radius: 15px;
     text-align: center;
-   /* display: flex;
-   flex-wrap: wrap; */
+    border:2px solid green;
+    padding: 1em;
+    /* display: flex;
+    flex-wrap: wrap; */
+}
+.del_user{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5em;
+    border-bottom:2px solid green;
+}
+.del_user span{
+    flex: 1;
 }
 
 .users h4{

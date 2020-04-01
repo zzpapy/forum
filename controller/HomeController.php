@@ -286,7 +286,7 @@
 
             }
             else{
-                $msg = "vous devez d'abord vous connectez...";
+                $msg = "vous devez d'abord vous connecter...";
                 SESSION::addFlash("error",$msg);
                 $users = new MembreManager();
                 $users = $users->findAll();

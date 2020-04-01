@@ -7,6 +7,9 @@
     if(isset($_SESSION["user"])){
         echo "<span>Bonjour : ".$_SESSION["user"]->getPseudo()."</span>";
     }
+    if(isset($_SESSION["admin"])){
+        echo "<p>ADMINSTRATEUR</p>";
+    }
     ?>
     </h1>
     <div class="head">
