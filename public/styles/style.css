@@ -24,6 +24,12 @@ a{
  /* border: 3px solid red; */
  box-shadow: 1px 1px 1px;   
 }
+.success{
+    font-size: 1.5em; 
+    color:green;
+    /* border: 3px solid red; */
+    box-shadow: 1px 1px 1px; 
+}
 .list_sujet{
     padding: 1em;
     flex: 1;

@@ -35,3 +35,14 @@
         echo $msg;
     ?>
 </div>
+<div class="success">
+<?php 
+        if(isset($_SESSION["success"])){
+            $msg = SESSION::getFlash("success");
+        }
+        else{
+            $msg = "";
+        }
+        echo $msg;
+    ?>
+</div>

@@ -226,8 +226,12 @@
         public function crea_sujet($id){
             $man = new SujetManager();
             $sujet = $man->add($_POST);  
-            var_dump($sujet);die;
+            // var_dump($sujet);die;
             $sujets = $man->findAll(); 
+            if($sujet != ""){
+                $msg = "Un nouveau sujet viens d'être créer";
+                SESSION::addFlash("success",$msg);
+            }
             // var_dump($sujet);die;
             header(('location:index.php?action=crea_mess&membre_id='.$_SESSION["user"]->getId().'&sujet_id='.$sujet.''));
             die();
@@ -245,7 +249,11 @@
                     $sub = new SubMessManager();
                     $sub_mess = $sub->findAll();
                     $man = new MessageManager();
-                    $log = $man->add($_POST);  
+                    $log = $man->add($_POST); 
+                    if($log != ""){
+                        $msg = "Un nouveau message viens d'être créer";
+                        SESSION::addFlash("success",$msg);
+                    } 
                     $mess = $man->findBySujet($_GET["sujet_id"]);
                     // var_dump($mess);die;
                     // header('location:index.php?action=crea_mess&sujet_id='.$_GET["sujet_id"].'&membre_id='.$_SESSION["user"]->getId());die(); 
