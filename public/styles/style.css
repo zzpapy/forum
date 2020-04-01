@@ -95,7 +95,7 @@ a{
     /* display: flex;
     flex-wrap: wrap; */
 }
-.del_user{
+.deleteUser{
     display: flex;
     justify-content: space-evenly;
     padding: 0.5em;

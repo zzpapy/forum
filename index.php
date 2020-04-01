@@ -1,6 +1,8 @@
 <?php
     namespace App;
     use Controller\HomeController;
+
+    // var_dump($_POST);die();
     define('DS', DIRECTORY_SEPARATOR); // le caractère séparateur de dossier (/ ou \)
     // meilleure portabilité sur les différents systêmes.
     define('BASE_DIR', dirname(__FILE__).DS); // pour se simplifier la vie

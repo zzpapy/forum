@@ -215,7 +215,7 @@
         public function logout(){
             // SESSION::sessionDestroy();
             unset($_SESSION["user"]);
-            unset($_SESSION["data"]["admin"]);
+            unset($_SESSION["admin"]);
             // var_dump($_SESSION);die();
                 header('location:index.php?action=index'); 
                 return [
@@ -324,6 +324,15 @@
         public function deleteSujet(){
             $man = new SujetManager();
             $man-> deleteSujet($_POST["sujet_id"]);
+            // var_dump($_POST);die;
+            header('location:index.php?action=sujet');
+        }
+        public function deleteUser(){
+            // var_dump($_POST);die();
+            $man = new MembreManager();
+            $man-> deleteUser($_POST["membre_id"]);
+            $users = $man->findAll();
+            SESSION::addFlash("users",$users);
             // var_dump($_POST);die;
             header('location:index.php?action=sujet');
         }
