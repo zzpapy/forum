@@ -1,4 +1,3 @@
-
 <div class="list_sujet">
     <?php 
     // var_dump($_SESSION);

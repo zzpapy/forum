@@ -226,7 +226,7 @@
         public function crea_sujet($id){
             $man = new SujetManager();
             $sujet = $man->add($_POST);  
-            // var_dump($sujet);die;
+            var_dump($sujet);die;
             $sujets = $man->findAll(); 
             // var_dump($sujet);die;
             header(('location:index.php?action=crea_mess&membre_id='.$_SESSION["user"]->getId().'&sujet_id='.$sujet.''));

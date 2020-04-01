@@ -21,7 +21,7 @@ a{
 .error{
  font-size: 1.5em; 
  color:red;
- border: 3px solid red;
+ /* border: 3px solid red; */
  box-shadow: 1px 1px 1px;   
 }
 .list_sujet{
