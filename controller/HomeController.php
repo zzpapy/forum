@@ -5,6 +5,7 @@
     use Model\Managers\SujetManager;
     use Model\Managers\MessageManager;
     use Model\Managers\SubMessManager;
+    use Model\Managers\SignalementManager;
     use APP\SESSION;
     
     
@@ -22,8 +23,12 @@
             // var_dump($_SESSION);die;
             // var_dump("toto");die;
            
+            // var_dump($_SESSION);die;
             // SESSION::addFlash("liste",$test);
             // var_dump($test);die;
+            $signal = new SignalementManager();
+            $signal = $signal->findAll();
+            // var_dump($signal);die;
             $man = new SujetManager();
             $sujets = $man->findAll();
             // var_dump($sujets);die();
@@ -46,7 +51,7 @@
                 }
                 
             }
-            else{
+            else if($sujets != ''){
                 foreach ($sujets as $key => $value) {
                     $man = new MessageManager();
                     $mess = $man->findBySujet($value->getId()); 
@@ -67,20 +72,11 @@
             }
             $test = new MembreManager();
             $test = $test->findAll();
-            // var_dump($_SESSION["data"]["mess"]);die;
-            SESSION::addFlash( "data" , [
-                "liste"=>$sujets,
-                "mess"=>$tab,
-                "test"=>$test
-                ]);
-            // return [
-            //                 "view" => VIEW_DIR."sujet.php",
-            //                 "data" => [
-            //                     "liste" => $sujets,
-            //                     "mess" => $tab
-            //                     ]
-            //                 ];
-
+            SESSION::addFlash( "liste",$sujets);
+            SESSION::addFlash( "mess",$tab);
+            SESSION::addFlash( "users",$test);
+            SESSION::addFlash( "signal",$signal);
+    
             return [
                 "view" => VIEW_DIR."sujet.php",
                 "data" =>""
@@ -129,12 +125,16 @@
             $bool = false;
             if($user){
                 // if($bool){
-                    if( password_verify($_POST["password"], $user->getPassword())){
+                    
+                    if( password_verify($_POST["password"], $user->getPassword()) && $_POST["pseudo"] == $user->getPseudo()){
                         $bool = true;
                         SESSION::addFlash("user",$user);
                         if($user->getPseudo() == "zzpapy"){
                             SESSION::addFlash("admin",1);
-                        } 
+                            $msg = "Vous êtes maintenant connecté";
+                            SESSION::addFlash("success",$msg);
+                        }
+                        
                         
                         $man = new SujetManager();
                         $sujets = $man->findAll(); 
@@ -158,6 +158,8 @@
                             
                         }
                         else{
+                            // var_dump("toto");die();
+                            
                             foreach ($sujets as $key => $value) {
                                 $man = new MessageManager();
                                 $mess = $man->findBySujet($value->getId()); 
@@ -179,33 +181,36 @@
                         }
                         $test = new MembreManager();
                         $test = $test->findAll();
-                        SESSION::addFlash( "data" , [
-                            "bool" => $bool,
-                            "user" => $user,
-                            "liste"=>$sujets,
-                            "mess"=>$tab,
-                            "users" => $test
-                            ]);
+                        SESSION::addFlash( "bool",$bool);
+                        SESSION::addFlash( "user",$user);
+                        SESSION::addFlash( "liste",$sujets);
+                        SESSION::addFlash( "mess",$tab);
+                        SESSION::addFlash( "users",$test);
                             // var_dump($_SESSION,$action);die;
                         header('location:index.php?action=sujet');die();
-                        return [
-                            "view" => VIEW_DIR."sujet.php",
-                            "data" => [
-                                "bool" => $bool,
-                                "user" => $user,
-                                "liste" => $sujets,
-                                "mess" => $tab
-                                ]
-                            ];
+                        // return [
+                        //     "view" => VIEW_DIR."sujet.php",
+                        //     "data" => [
+                        //         "bool" => $bool,
+                        //         "user" => $user,
+                        //         "liste" => $sujets,
+                        //         "mess" => $tab
+                        //         ]
+                        //     ];
                         }                   
                         else{
+                            $msg = "Une erreur s'est produite merci de vérifier vos éléments de connexion";
+                            SESSION::addFlash("error",$msg);
+                            
                             return [
-                                "view" => VIEW_DIR."home.php" ,
+                                "view" => VIEW_DIR."sujet.php" ,
                                 "data" => "ce compte n'existe pas"                       
                             ];
                         }
                     }
                     else{
+                        $msg = "Une erreur s'est produite merci de vérifier vos éléments de connexion";
+                        SESSION::addFlash("error",$msg);
                         return [
                             "view" => VIEW_DIR."sujet.php" ,
                     "data" => "le mot de passe ou le pseudo est incorrect !!!"                       
@@ -231,8 +236,9 @@
             if($sujet != ""){
                 $msg = "Un nouveau sujet viens d'être créer";
                 SESSION::addFlash("success",$msg);
+                SESSION::addFlash("liste",$sujets);
             }
-            // var_dump($sujet);die;
+            var_dump($sujets);
             header(('location:index.php?action=crea_mess&membre_id='.$_SESSION["user"]->getId().'&sujet_id='.$sujet.''));
             die();
             // return [
@@ -241,8 +247,9 @@
             // ];
         }
         public function crea_mess($id){
+            // var_dump($_GET);die();
             if(isset($_SESSION["user"])){
-                if($_GET["sujet_id"] != ''){
+                if($_GET["sujet_id"] != '' && !isset($_GET["ok"])){
                     $man = new SujetManager();
                     $sujets = $man->findAll(); 
                     $sujet = $man->findOneById($_GET["sujet_id"])->getTitre();
@@ -256,28 +263,38 @@
                     } 
                     $mess = $man->findBySujet($_GET["sujet_id"]);
                     // var_dump($mess);die;
-                    // header('location:index.php?action=crea_mess&sujet_id='.$_GET["sujet_id"].'&membre_id='.$_SESSION["user"]->getId());die(); 
                     // if(array_key_exists($_SESSION["views"][$_GET["sujet_id"]],$_SESSION["views"])){
                         
-                    // }
-                    if(!isset($_SESSION["views"][$_GET["sujet_id"]])){
-                        SESSION::addViews($_GET["sujet_id"],1);
+                        // }
+                        if(!isset($_SESSION["views"][$_GET["sujet_id"]])){
+                            SESSION::addViews($_GET["sujet_id"],1);
+                        }
+                        else{
+                            $_SESSION["views"][$_GET["sujet_id"]]++;
+                        }
+                        // var_dump( $_SESSION);die();
+                        // header('location:index.php?action=sujet');die(); 
+                        $_POST= "";
+                        header('location:index.php?action=crea_mess&ok=true&sujet_id='.$_GET["sujet_id"].'&membre_id='.$_SESSION["user"]->getId());die(); 
                     }
-                    else{
-                        $_SESSION["views"][$_GET["sujet_id"]]++;
-                    }
-                    // var_dump( $_SESSION);die();
-                    
-                    return [
-                        "view" => VIEW_DIR."crea_mess.php",
-                        "data" => ["mess"=>$mess,"sujet" => $sujet,"subMess"=>$sub_mess]
-                    ];
+                    else if(isset($_GET["ok"])){
+                        $man = new SujetManager();
+                        $sujets = $man->findAll(); 
+                        $sujet = $man->findOneById($_GET["sujet_id"])->getTitre();
+                        $sub = new SubMessManager();
+                        $sub_mess = $sub->findAll();
+                        $man = new MessageManager();
+                        $mess = $man->findBySujet($_GET["sujet_id"]);
+                        return [
+                            "view" => VIEW_DIR."crea_mess.php",
+                            "data" => ["mess"=>$mess,"sujet" => $sujet,"subMess"=>$sub_mess]
+                        ];
+                        
                 }
                 else{
                     $man = new SujetManager();
                     $sujets = $man->findAll();
                    
-                    header('location:index.php?action=crea_mess&sujet_id='.$_GET["sujet_id"].'&membre_id='.$_SESSION["user"]->getId());die(); 
                     return [
                         "view" => VIEW_DIR."sujet.php",
                         "data" => ["liste"=>$sujets]
@@ -360,6 +377,25 @@
                 }
             }
             // var_dump($res);
+        }
+        public function signal(){
+            $man = new SignalementManager();
+            $sign = $man->add($_POST);
+            $msg = "Ce message à bien été signalé au modérateur";
+           $toto = SESSION::addFlash("success",$msg);
+            // var_dump($_SESSION);die;
+            return [
+                "view" => VIEW_DIR."sujet.php",
+                "data" => ""
+            ];
+            // header('location:index.php?action=sujet');
+        }
+        public function affichSignal(){
+            // var_dump($_SESSION);die;
+            return [
+                "view" => VIEW_DIR."affich_signal.php",
+                "data" => ""
+            ];
         }
                                        
     }

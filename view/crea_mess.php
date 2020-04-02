@@ -9,7 +9,7 @@ if(isset($_GET["sujet_id"])){
     else{
         $subMess = false;
     }
-    // var_dump($subMess);die;
+    // var_dump($_SESSION);die;
     
 }
 else{
@@ -25,9 +25,9 @@ else{
             <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
             <input type="submit" name="crea_mess">
         </form>
+        <h1> Titre du sujet : <?php echo $result["data"]["sujet"] ?></h1>
+        <h3>liste des messages</h3>
     </div>
-    <h1> Titre du sujet : <?php echo $result["data"]["sujet"] ?></h1>
-    <h3>liste des messages</h3>
     <div class="block_mess">
         <?php 
         $msg = "";

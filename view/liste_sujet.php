@@ -2,10 +2,11 @@
 <a href='index.php?action=crea_mess&sujet_id=<?php echo $sujet_id ?>&membre_id=<?php echo $membre_id ?>'>
 <li class='message sub'>
     <div>
+        <span>post : </span>
         <?php echo $nb_post ?>
     </div>
     <div class="sujet_style">
-        <div>
+        <div class="post">
             <span><?php echo $titre ?>
         </div>
         <div class="author" >
@@ -13,14 +14,11 @@
                 <?php echo $date ?>
             </div>
             <div>
-                <?php echo $sujet_id ?>
-            </div>
-            <div>
                 <?php 
                 echo "nbr vues : ".$views ?>
             </div>
             <div>
-                <?php echo $by ?>
+                <?php echo "par : ".$by ?>
             </div>
         </div>
     </div>

@@ -2,7 +2,6 @@
     namespace App;
     use Controller\HomeController;
 
-    // var_dump($_POST);die();
     define('DS', DIRECTORY_SEPARATOR); // le caractère séparateur de dossier (/ ou \)
     // meilleure portabilité sur les différents systêmes.
     define('BASE_DIR', dirname(__FILE__).DS); // pour se simplifier la vie
@@ -12,6 +11,7 @@
     require("app/SESSION.php");
     Autoloader::register();
     session_start();
+    // var_dump($_SESSION,$result["view"]);die();
     $ctrl = new HomeController();
     $id = null;
     if(isset($_GET['id'])){

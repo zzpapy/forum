@@ -73,6 +73,10 @@ a{
     position: sticky;
     top:15em;
 }
+.crea_sujet{
+    position: sticky;
+    top:10em;
+}
 .connect {
     position: sticky;
     top:28em;
@@ -106,8 +110,7 @@ a{
 }
 
 .users h4{
-    position: sticky;
-    top: 0;
+    margin-top: 0;
 }
 .users::-webkit-scrollbar{
     display: none;
@@ -179,12 +182,16 @@ p.bordure a{
 }
 .affich{
     position:fixed;
-    top: 7em;
+    top: 10em;
     right: 11em;
     width: 25%;
     background: white;
     border: 1px solid green;
     z-index: 1;
+}
+.signal{
+    background: white;
+    color: black;
 }
 .affich div{
     margin: 1em;
@@ -198,3 +205,40 @@ p.bordure a{
 .content_sub p{
     text-align: center;
 }
+.post{
+    text-align: center;
+}
+form{
+    padding: 1em;
+}
+@media screen and (max-width: 640px) {
+    .content,.sticky,.head{
+        display :flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    .sticky h1{
+        font-size: 1.5em;
+    }
+    .head{
+        margin:auto;
+    }
+    .home{
+        width: 100%;
+       
+    }
+    .list li a{
+        flex-direction: column;
+    }
+    .crea_sujet {
+        top: 15em;
+    }
+    .author{
+        flex-direction: column-reverse;
+    }
+    .affich{
+        width: 50%;
+        right: 6em;
+        top:16em;
+    }
+  }

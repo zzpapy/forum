@@ -56,6 +56,7 @@
         }        
         
         public function add($data){
+           
             if(isset($data["pseudo"])){
                 
                 $data["pseudo"] = filter_var ( $data["pseudo"], FILTER_SANITIZE_STRING);
@@ -109,7 +110,7 @@
                     return DAO::insert($sql);
                 }
             }
-            else if(!empty($_POST)){
+            else if(!empty($_POST) && !isset($_POST["del"])){
                 if(isset($_POST["content"]) && $_POST["content"] != ''){
                     $data["membre_id"] = filter_var ( $data["membre_id"], FILTER_SANITIZE_STRING);
                     $data["message_id"] = filter_var ( $data["message_id"], FILTER_SANITIZE_STRING);
@@ -128,6 +129,20 @@
 
                     return DAO::insert($sql);
                 }
+            }
+            else if(isset($_POST["del"])){
+                unset($_POST["del"]);
+                // var_dump($_POST);die;
+                $keys = array_keys($_POST);
+                $values = array_values($_POST);
+                $sql = "INSERT INTO ".$this->tableName."
+                (".implode(',', $keys).")
+                VALUES
+                ('".implode("','",$values)."')";
+                $_POST = [];
+
+                return DAO::insert($sql);
+
             }
         }
         
