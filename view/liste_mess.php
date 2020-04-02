@@ -12,7 +12,7 @@
             <input type="hidden" name="message_id" value="<?php echo $id_mess; ?>">
             <input type="hidden" name="membre_id" value="<?php echo $id; ?>">
             <input type="hidden" name="del" >
-            <button>Signaler</button>
+            <button class="button">Signaler</button>
         </form>
         <p>date :<?php echo $date?></p>
         <?php
@@ -20,13 +20,13 @@
         echo "<div><form action='index.php?action=delete&message_id=".$id_mess."' method='POST'>";
         echo ' <input type="hidden" name="membre_id" value="'.$id.'">
         <input type="hidden" name="message_id" value="'.$id_mess.'">';
-        echo "<button><span class='delete fas fa-times-circle'></span></button>";
+        echo "<button><span class='delete fa-2x fas fa-times-circle'></span></button>";
         echo "</form></div>";
     }
     ?>
     </div>
     <div> 
-        <p class='content'><?php echo $content?><p>
+        <p class='content_mess'><?php echo $content?><p>
 
     </div>
     <div class='subMess'>
@@ -38,7 +38,7 @@
             <input type="hidden" name="message_id" value="<?php echo $id_mess?>">
             <input type='submit'>
         </form>
-    </div>
+    
     <div>
         <?php
             // var_dump($subMess);die();
@@ -49,16 +49,17 @@
                     if($value->getMessage()->getId() == $id_mess){
     
                     // var_dump($value->getMembre());
-                        echo "<div class='message sub'>";
-                            echo "<div class='head_mess'>";
+                        echo "<div class='message_list sub'>";
+                            echo "<div class='mess'>";
                             // echo $value->getMessage()->getId() == $id_mess;
                                 echo "<div><p>Auteur :".$value->getMembre()->getPseudo()."</p></div>";
                                 $date = new \DateTime($value->getDate());
                                 $date = $date->format('d/m/Y H:i');
-                                echo "<div class='content_sub'>contenu:<p class='content'>".$value->getContent()."</p></div>";
+                                echo "<div class='content_sub'>contenu:<p class='content_mess'>".$value->getContent()."</p></div>";
                                 echo "<p>date :".$date."</p>";
                                 // echo "<div>id submes : ".$value->getId()."</div>";
                             echo "</div></div>";
+                            echo "<div class='separator'></div>";
                         }              
                     }
                 } 
@@ -71,7 +72,7 @@
                                 echo "<div><p>Auteur :".$result["data"]["subMess"]->getMembre()->getPseudo()."</p></div>";
                                 $date = new \DateTime($result["data"]["subMess"]->getDate());
                                 $date = $date->format('d/m/Y H:i');
-                                echo "<div class='content_sub'>contenu:<p class='content'>".$result["data"]["subMess"]->getContent()."</p></div>";
+                                echo "<div class='content_sub'>contenu:<p class='content_mess'>".$result["data"]["subMess"]->getContent()."</p></div>";
                                 echo "<p>date :".$date."</p>";
                                 // echo "<div>id submes : ".$result["data"]["subMess"]->getId()."</div>";
                             echo "</div></div>";
@@ -85,6 +86,6 @@
         ?>
     </div>
 </div>
-<!-- </div> -->
+</div>
            
                             

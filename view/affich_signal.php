@@ -1,10 +1,9 @@
 
-<div class="list_message">
+<div class="list_sujet">
     
     <div class="block_mess">
         <?php 
         $msg = "";
-        var_dump($_SESSION["signal"]);die;
         if($_SESSION["signal"] !=NULL){
             if(!is_object($_SESSION["signal"])){
                 foreach ($_SESSION["signal"] as $key => $value) {

@@ -238,7 +238,7 @@
                 SESSION::addFlash("success",$msg);
                 SESSION::addFlash("liste",$sujets);
             }
-            var_dump($sujets);
+            // var_dump($sujets);
             header(('location:index.php?action=crea_mess&membre_id='.$_SESSION["user"]->getId().'&sujet_id='.$sujet.''));
             die();
             // return [

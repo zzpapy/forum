@@ -16,17 +16,17 @@ else{
     $sujet_id = '';
 }
 ?>
-<div class="list_message">
+<div class="list_sujet">
     <div class="crea_mess">
-        <h2>Participez à la discussion</h2>
+        <p>Participez à la discussion</p>
         <form action="index.php?action=crea_mess&sujet_id=<?php echo $sujet_id ?>" method="POST">
             <input type="hidden" name="membre_id" value="<?= $id ?>">
             <input type="text" name="content">
             <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
             <input type="submit" name="crea_mess">
         </form>
-        <h1> Titre du sujet : <?php echo $result["data"]["sujet"] ?></h1>
-        <h3>liste des messages</h3>
+        <h3> Titre du sujet : <?php echo $result["data"]["sujet"] ?></h3>
+        <p>liste des messages</p>
     </div>
     <div class="block_mess">
         <?php 
