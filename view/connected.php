@@ -1,6 +1,9 @@
 <div class="home">
     <div class="sticky_home">
-    <div class='users'><h4>membres:<?php echo count($_SESSION["users"]) ?></h4>
+        <?php
+        // var_dump($_SESSION["users"]);die;
+        ?>
+        <div class='users'><h4>membres:<?php echo count($_SESSION["users"]) ?></h4>
         <?php
             foreach ($_SESSION["users"] as $key => $value) {
                 $user = $value->getPseudo();

@@ -56,6 +56,7 @@ $(".photo_gal").on("click",function(){
   console.log( $(this).find("img").attr('src'))   
   if(modal){
       $(".modal").toggleClass("hide")
+     
       setTimeout(function(){
            $("#modal_img").attr('src',modal).toggleClass("transform-active")
       },500) 
@@ -95,6 +96,7 @@ $(".close").on("click",function(){
   var classList = $(this)
   if(jQuery.inArray("modal",classList.prop("classList"))==0){
       $(".modal").toggleClass("hide")
+     
   }
   else{
      $(".modal1").toggleClass("hide")

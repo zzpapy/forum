@@ -67,7 +67,7 @@
                 }
             }
             $test = new MembreManager();
-            $test = $test->findAll();
+            $test = $test->selectUsers();
             SESSION::addFlash( "liste",$sujets);
             SESSION::addFlash( "mess",$tab);
             SESSION::addFlash( "users",$test);
@@ -107,7 +107,7 @@
                 // var_dump($_POST);die;
                 $user  = $man -> add($_POST);
                 return [
-                    "view" => VIEW_DIR."home.php",
+                    "view" => VIEW_DIR."sujet.php",
                     "data" => ""
                 ];
             }
@@ -176,7 +176,7 @@
                             // var_dump("toto",$tab);die;
                         }
                         $test = new MembreManager();
-                        $test = $test->findAll();
+                        $test = $test->selectUsers();
                         SESSION::addFlash( "bool",$bool);
                         SESSION::addFlash( "user",$user);
                         SESSION::addFlash( "liste",$sujets);
@@ -312,7 +312,7 @@
                 $msg = "vous devez d'abord vous connecter...";
                 SESSION::addFlash("error",$msg);
                 $users = new MembreManager();
-                $users = $users->findAll();
+                $users = $users->selectUsers();
                 $man = new SujetManager();
                 $mess = new MessageManager();
                 $mess = $mess->findAll();
@@ -372,7 +372,7 @@
             // var_dump($_POST);die();
             $man = new MembreManager();
             $man-> deleteUser($_POST["membre_id"]);
-            $users = $man->findAll();
+            $users = $man->selectUsers();
             SESSION::addFlash("users",$users);
             // var_dump($_POST);die;
             header('location:index.php?action=sujet');

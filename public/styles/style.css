@@ -18,20 +18,20 @@ body{
 .center_modal{
     width: 100%;
     height: 100%;
-    padding: 15vh;
+    padding: 5vh 15vh;
     align-self: center;
     
 }
 #modal_img{
     height: 100%;
-    max-height: 70vh;
+    /* max-height: 70vh; */
     display: block;
     margin: auto;
     opacity: 0;
     transition: opacity 1s;
 }
 
-.affich{
+.affich_carous{
     /* max-width: 75%; */
     margin: auto;
     padding-top: 5em;
@@ -40,12 +40,12 @@ body{
 .arrow{
     position: fixed;
     top: 50%;
-    left: 10em;
+    left: 5em;
 }
 .arrow1{
     position: fixed;
     top: 50%;
-    right: 10em;
+    right: 5em;
 }
 
 .transform {
@@ -151,6 +151,25 @@ img{
 }
 .list a{
     color:black;
+}
+.label-file {
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+.label-file:hover {
+    color: #25a5c4;
+}
+.fa-image{
+    color: #aaa;
+    margin-right: 0.5em;
+    box-shadow: 1px 1px 1px black;
+}
+.fa-image:hover{
+    box-shadow: 0px 0px 0px;
+}
+.input-file {
+    display: none;
 }
 .crea_sujet{
     text-align: center;
@@ -309,7 +328,7 @@ img{
     right: 0.5em;
     cursor: pointer;
 }
-.button{
+.button,.button_form{
     border: none;
     background: #404040;
     color: #ffffff !important;
@@ -321,6 +340,9 @@ img{
     position: absolute;
     cursor: pointer;
     }
+.button_form{
+    margin: 0.5em;
+}
 .button{
     top:0;
     left: 0.5em;
@@ -354,7 +376,7 @@ img{
 .crea_user a{
     color: white;
 }
-.button:hover,.crea_user:hover,.crea:hover,.crea_user a:hover {
+.button:hover,.crea_user:hover,.crea:hover,.crea_user a:hover,.button_form:hover {
     color: #404040 !important;
     font-weight: 700 !important;
     letter-spacing: 3px;
@@ -373,16 +395,21 @@ button{
 }
 @media screen and (max-width: 640px) {
     .content,.sticky,.head{
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
     .home{
-        width: 100%;
+        width: 80%;
+        margin: auto;
     }
     .head{
         text-align: center;
     }
     .titre{
         font-size: 1em;
+    }
+    .form_flex{
+        width: 100%;
+        padding: 0;
     }
    
   }

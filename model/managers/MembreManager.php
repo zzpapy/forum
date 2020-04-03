@@ -58,4 +58,12 @@
             
             return $tab;
         }
+        public function selectUsers(){
+            $sql = "SELECT m.id_membre, m.pseudo FROM ".$this->tableName." m";
+            // var_dump($this->tableName);die;
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        }
     }

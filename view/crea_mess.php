@@ -23,11 +23,11 @@ else{
             <input type="hidden" name="membre_id" value="<?= $id ?>">
             <input class="input" type="text" name="content">
             <div>
-                <label for="photo"> photo (optionnel)</label>
-                <input type="file" name="photo" id="photo">
+                <label for="photo" class="label-file"><i class="far fa-2x fa-image"></i></label>
+                <input  type="file" class="input-file" name="photo" id="photo">
+                <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
+                <input type="submit" class=" button_form" name="crea_mess">
             </div>
-            <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
-            <input type="submit" name="crea_mess">
         </form>
         <h3> Titre du sujet : <?php echo $result["data"]["sujet"] ?></h3>
         <p>liste des messages</p>

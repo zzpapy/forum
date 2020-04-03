@@ -1,5 +1,4 @@
 <div class="list_sujet">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam iste deserunt eos unde tempore ullam, praesentium est in dolore dolores expedita corporis rem cumque qui dicta voluptate officiis necessitatibus ducimus.
     <?php 
     // var_dump($_SESSION);die;
     if(isset($_SESSION["user"])){ 
@@ -9,9 +8,9 @@
         <input type="hidden" name="membre_id" value='.$_SESSION["user"]->getId().'>
         <input class="input" type="text" name="titre">
         <div>
-        <label for="photo"> photo (optionnel)</label>
-        <input type="file" name="photo" id="photo">
-        <input type="submit" name="crea_sujet">
+        <label for="photo" class="label-file"><i class="far fa-2x fa-image"></i></label>
+        <input type="file"class="input-file" name="photo" id="photo">
+        <input type="submit"  class="button_form" name="crea_sujet">
         </div>
         </form>
         </div>';
