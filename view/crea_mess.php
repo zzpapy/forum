@@ -22,7 +22,10 @@ else{
         <form action="index.php?action=crea_mess&sujet_id=<?php echo $sujet_id ?>" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="membre_id" value="<?= $id ?>">
             <input class="input" type="text" name="content">
-            <input type="file" name="photo" id="photo">
+            <div>
+                <label for="photo"> photo (optionnel)</label>
+                <input type="file" name="photo" id="photo">
+            </div>
             <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
             <input type="submit" name="crea_mess">
         </form>

@@ -8,8 +8,11 @@
         <form action="index.php?action=crea_sujet" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="membre_id" value='.$_SESSION["user"]->getId().'>
         <input class="input" type="text" name="titre">
-        <input type="file" name="photo" id="fileToUpload">
+        <div>
+        <label for="photo"> photo (optionnel)</label>
+        <input type="file" name="photo" id="photo">
         <input type="submit" name="crea_sujet">
+        </div>
         </form>
         </div>';
     } 

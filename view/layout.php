@@ -12,6 +12,19 @@
     <title>Document</title>
 </head>
 <body>
+<div class="modal close hide">
+    <div class="affich .transform flex">
+        <div class="arrow carousel" data-direction="prev">
+            <i class="fas fa-arrow-left fa-2x"></i>
+        </div>
+        <div class="center_modal">
+            <img id="modal_img" src="">
+        </div>
+        <div class="arrow1 carousel" data-direction="next">
+            <i class="fas fa-arrow-right fa-2x"></i>
+        </div>
+    </div>
+</div>
 <div class="wrapper">
     <!-- <div class="error">
         <?php 
