@@ -10,6 +10,7 @@ final class Message extends Entity{
     private $sujet;
     private $content;
     private $date;
+    private $photo;
 
     public function __construct($data){         
         $this->hydrate($data);        
@@ -111,6 +112,26 @@ final class Message extends Entity{
     public function setDate($date)
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of photo
+     */ 
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set the value of photo
+     *
+     * @return  self
+     */ 
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
 
         return $this;
     }

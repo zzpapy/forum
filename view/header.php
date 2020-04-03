@@ -15,6 +15,7 @@
         echo "</div>";
     }
     ?>
+    <a href="index.php?action=findPhoto">Gallerie</a>
     </h1>
     <div class="head">
                     
@@ -45,6 +46,7 @@
                 echo "";
             }        
             ?>
+            <a href="index.php?action=findPhoto"></a>
     </div>
 </div>
 <div class='affich'></div>
@@ -69,4 +71,5 @@
         }
         echo $msg;
     ?>
+    
 </div>

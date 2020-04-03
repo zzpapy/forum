@@ -8,6 +8,9 @@ body{
 a{
     text-decoration: none;
 }
+img{
+    width: 100%;
+}
 .sticky{
     background: black;
     color: white;
@@ -42,6 +45,26 @@ a{
     color: white;
     font-size: 1.5em;
 }
+.titre a{
+    color:white;
+}
+.gallerie{
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-between;
+}
+.photo_gal{
+    width: 16em;
+    height: 10em;
+    overflow: hidden;
+    margin-bottom: 0.5em;
+
+}
+/* .photo_gal img{
+    transform: translate(0,-5em);
+} */
 .recherche{
     text-align: center;
     font-size: 1.1em;
@@ -74,7 +97,7 @@ a{
     padding: 0;
 }
 .list a{
-    color:black;ss
+    color:black;
 }
 .crea_sujet{
     text-align: center;
@@ -82,6 +105,19 @@ a{
 .post{
     flex: 1;
     margin-right: 0.5em;
+}
+.post_titre{
+    /* flex: 1;
+    margin-right: 0.5em; */
+    display: flex;
+    align-items: center;
+
+}
+.post_titre span{
+    flex: 1;
+    font-size: 1.5em;
+    padding: 1em;
+    border: 1px solid #aaa;
 }
 .home{
     width: 25%;
@@ -131,10 +167,16 @@ a{
     padding: 0.5em;
     line-height: 2em;
 }
+.input{
+    width: 75%;
+    line-height: 2em;
+    background: #aaa;
+}
 .bordure{
     border:2px solid green;
     margin: 0.5em;
     width:90%;
+    font-size: 0.9em;
 }
 
 .message,.sujet_style{
@@ -143,7 +185,13 @@ a{
     align-items: center;
     padding: 0.5em 0.5em;
     margin: 1em;
-    font-size: 1.1em;
+    font-size: 0.9em;
+}
+.photo{
+    width: 12em;
+    /* height: 8em; */
+    overflow: hidden;
+    padding: 0.5em;
 }
 .message{
     border: 2px solid green;
@@ -153,6 +201,11 @@ a{
     background: green;
     color: white;
     border-radius: 15px;
+}
+.mess{
+    background: white;
+    border: 1px solid #aaa;
+    color: black;
 }
 .message > div:first-child{
     text-align: left;

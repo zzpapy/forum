@@ -10,8 +10,7 @@
         public function findAll(){
 
             $sql = "SELECT *
-                    FROM ".$this->tableName." a
-                    ORDER BY date DESc";
+                    FROM ".$this->tableName." a";
        
             return $this->getMultipleResults(
                 DAO::select($sql), 
@@ -46,8 +45,7 @@
         }
         public function findBySujet($sujet_id){
             $sql = "SELECT *
-                    FROM ".$this->tableName." v WHERE v.sujet_id = :id
-                    ORDER BY id_message DESC";
+                    FROM ".$this->tableName." v WHERE v.sujet_id = :id";
 
             return $this->getMultipleResults(
                 DAO::select($sql, ['id' => $sujet_id]), 

@@ -11,7 +11,6 @@
     require("app/SESSION.php");
     Autoloader::register();
     session_start();
-    // var_dump($_SESSION,$result["view"]);die();
     $ctrl = new HomeController();
     $id = null;
     if(isset($_GET['id'])){
@@ -26,6 +25,7 @@
         }
     }
     else $action = "sujet"; 
+    // var_dump($action,$_GET);die();
     $result = $ctrl->$action($id);
     
     if($action == "ajax"){//si l'action était ajax

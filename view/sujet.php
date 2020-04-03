@@ -1,13 +1,14 @@
 <div class="list_sujet">
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam iste deserunt eos unde tempore ullam, praesentium est in dolore dolores expedita corporis rem cumque qui dicta voluptate officiis necessitatibus ducimus.
     <?php 
     // var_dump($_SESSION);die;
     if(isset($_SESSION["user"])){ 
         echo '<div class="crea_sujet">
         <p>Une question, un problème ou juste envie de discuter créez un sujet ici</p>
-        <form action="index.php?action=crea_sujet" method="POST">
-        
+        <form action="index.php?action=crea_sujet" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="membre_id" value='.$_SESSION["user"]->getId().'>
         <input class="input" type="text" name="titre">
+        <input type="file" name="photo" id="fileToUpload">
         <input type="submit" name="crea_sujet">
         </form>
         </div>';
@@ -42,6 +43,7 @@
                     $by = $value->getMembre()->getPseudo();
                     $titre = $value->getTitre();
                     $author = $value->getMembre()->getId();
+                    $photo = $value->getPhoto();
                     if(isset($_SESSION["views"][$sujet_id])){
                         $views = $_SESSION["views"][$sujet_id];
                     }
@@ -54,6 +56,7 @@
                     else{
                         $nb_post = 0;
                     }
+                    // var_dump($nb_post);die;
                     include('liste_sujet.php');
                 }
             }
@@ -68,6 +71,7 @@
                 $titre = $_SESSION["liste"]->getTitre();
                 $message_id = $_SESSION["liste"]->getId();
                 $author = $_SESSION["liste"]->getMembre()->getId();
+                $photo = $_SESSION["liste"]->getPhoto();
                 if(array_key_exists($_SESSION["liste"]->getId(),$_SESSION["mess"])){
                     $nb_post = $_SESSION["mess"][$_SESSION["liste"]->getId()];
                 }

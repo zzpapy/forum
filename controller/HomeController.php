@@ -7,6 +7,7 @@
     use Model\Managers\SubMessManager;
     use Model\Managers\SignalementManager;
     use APP\SESSION;
+    use APP\Upload;
     
     
     class HomeController{
@@ -20,12 +21,7 @@
        
 
         public function sujet(){
-            // var_dump($_SESSION);die;
-            // var_dump("toto");die;
-           
-            // var_dump($_SESSION);die;
-            // SESSION::addFlash("liste",$test);
-            // var_dump($test);die;
+            
             $signal = new SignalementManager();
             $signal = $signal->findAll();
             // var_dump($signal);die;
@@ -186,7 +182,7 @@
                         SESSION::addFlash( "liste",$sujets);
                         SESSION::addFlash( "mess",$tab);
                         SESSION::addFlash( "users",$test);
-                            // var_dump($_SESSION,$action);die;
+                            
                         header('location:index.php?action=sujet');die();
                         // return [
                         //     "view" => VIEW_DIR."sujet.php",
@@ -229,9 +225,11 @@
                 ];
         }
         public function crea_sujet($id){
+            $photo = $this->upload($_FILES);
+            $_POST["photo"] = $photo;
+            var_dump($_POST);die;
             $man = new SujetManager();
             $sujet = $man->add($_POST);  
-            // var_dump($sujet);die;
             $sujets = $man->findAll(); 
             if($sujet != ""){
                 $msg = "Un nouveau sujet viens d'être créer";
@@ -247,9 +245,12 @@
             // ];
         }
         public function crea_mess($id){
-            // var_dump($_GET);die();
+
             if(isset($_SESSION["user"])){
                 if($_GET["sujet_id"] != '' && !isset($_GET["ok"])){
+                    // var_dump($_POST,$_FILES);die;
+                    $photo = $this->upload($_FILES);
+                    $_POST["photo"] = $photo;
                     $man = new SujetManager();
                     $sujets = $man->findAll(); 
                     $sujet = $man->findOneById($_GET["sujet_id"])->getTitre();
@@ -266,48 +267,71 @@
                     // if(array_key_exists($_SESSION["views"][$_GET["sujet_id"]],$_SESSION["views"])){
                         
                         // }
-                        if(!isset($_SESSION["views"][$_GET["sujet_id"]])){
-                            SESSION::addViews($_GET["sujet_id"],1);
-                        }
-                        else{
-                            $_SESSION["views"][$_GET["sujet_id"]]++;
-                        }
-                        // var_dump( $_SESSION);die();
-                        // header('location:index.php?action=sujet');die(); 
-                        $_POST= "";
-                        header('location:index.php?action=crea_mess&ok=true&sujet_id='.$_GET["sujet_id"].'&membre_id='.$_SESSION["user"]->getId());die(); 
+                    if(!isset($_SESSION["views"][$_GET["sujet_id"]])){
+                        SESSION::addViews($_GET["sujet_id"],1);
                     }
-                    else if(isset($_GET["ok"])){
-                        $man = new SujetManager();
-                        $sujets = $man->findAll(); 
-                        $sujet = $man->findOneById($_GET["sujet_id"])->getTitre();
-                        $sub = new SubMessManager();
-                        $sub_mess = $sub->findAll();
-                        $man = new MessageManager();
-                        $mess = $man->findBySujet($_GET["sujet_id"]);
-                        return [
-                            "view" => VIEW_DIR."crea_mess.php",
-                            "data" => ["mess"=>$mess,"sujet" => $sujet,"subMess"=>$sub_mess]
-                        ];
-                        
+                    else{
+                        $_SESSION["views"][$_GET["sujet_id"]]++;
+                    }
+                    // var_dump( $_SESSION);die();
+                    // header('location:index.php?action=sujet');die(); 
+                    $_POST= "";
+                    header('location:index.php?action=crea_mess&ok=true&sujet_id='.$_GET["sujet_id"].'&membre_id='.$_SESSION["user"]->getId());die(); 
+                }
+                else if(isset($_GET["ok"])){
+                    $man = new SujetManager();
+                    $sujets = $man->findAll(); 
+                    $sujet = $man->findOneById($_GET["sujet_id"])->getTitre();
+                    $sub = new SubMessManager();
+                    $sub_mess = $sub->findAll();
+                    $man = new MessageManager();
+                    $mess = $man->findBySujet($_GET["sujet_id"]);
+                    return [
+                        "view" => VIEW_DIR."crea_mess.php",
+                        "data" => ["mess"=>$mess,"sujet" => $sujet,"subMess"=>$sub_mess]
+                    ];
+                    
                 }
                 else{
                     $man = new SujetManager();
                     $sujets = $man->findAll();
-                   
+                    
                     return [
                         "view" => VIEW_DIR."sujet.php",
                         "data" => ["liste"=>$sujets]
                     ];
                 }
-
             }
             else{
+                if(!isset($_SESSION["views"][$_GET["sujet_id"]])){
+                    SESSION::addViews($_GET["sujet_id"],1);
+                }
+                else{
+                    $_SESSION["views"][$_GET["sujet_id"]]++;
+                }
                 $msg = "vous devez d'abord vous connecter...";
                 SESSION::addFlash("error",$msg);
                 $users = new MembreManager();
                 $users = $users->findAll();
+                $man = new SujetManager();
+                $mess = new MessageManager();
+                $mess = $mess->findAll();
+                $sujets = $man->findAll(); 
                 SESSION::addFlash("users",$users);
+                SESSION::addFlash("liste",$sujets);
+                SESSION::addFlash("mess",$mess);
+                if(isset($_SESSION["liste"]) && !is_object($_SESSION["liste"]) ){
+                    $i = 0;
+                    // var_dump($_SESSION["mess"]);die;
+                    foreach ($_SESSION["liste"] as $key => $value) {
+                        if(array_key_exists($value->getId(),$_SESSION["mess"])){
+                            $nb_post = $_SESSION["mess"][$value->getId()];
+                        }
+                        else{
+                            $nb_post = 0;
+                        }
+                    }
+                }
                 // var_dump($sujets);die;
                 // var_dump($_SESSION);die;
                 return [
@@ -394,6 +418,25 @@
             // var_dump($_SESSION);die;
             return [
                 "view" => VIEW_DIR."affich_signal.php",
+                "data" => ""
+            ];
+        }
+        public function upload($photo){
+            // if(isset($_FILES) && !empty($_FILES["fileToUpload"]["name"])){
+               
+                $up = Upload::uploadFile("photo",$_FILES["photo"]["name"],"public/images/");
+                $photo = "public/images/".$up;
+                // var_dump($photo);die;
+            // }
+            
+            return $photo;
+        }
+        public function findPhoto(){
+            $man = new MembreManager();
+            $photos = $man->findPhoto();
+            SESSION::addFlash("photo",$photos);
+            return [
+                "view" => VIEW_DIR."gallerie.php",
                 "data" => ""
             ];
         }

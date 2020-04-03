@@ -27,4 +27,35 @@
                 $this->className
             );
         }
+        public function findPhoto(){
+            $tab= [];
+            $sql = "SELECT m.photo
+            FROM message m
+            WHERE m.photo IS NOT NULL";
+            $photo_mess =  DAO::select($sql);
+            if(count($photo_mess) > 1){
+                foreach ($photo_mess as $key => $value) {
+                    array_push($tab,$value);
+                    
+                }
+            }
+            else{
+                array_push($tab,$photo_mess);
+            }
+            $sql = "SELECT s.photo
+            FROM sujet s
+            WHERE s.photo IS NOT NULL";
+            $photo_sujet =  DAO::select($sql);
+            if(count($photo_sujet) > 1){
+                foreach ($photo_sujet as $key => $value) {
+                    array_push($tab,$value);
+                    
+                }
+            }
+            else{
+                array_push($tab,$photo_sujet);
+            }
+            
+            return $tab;
+        }
     }

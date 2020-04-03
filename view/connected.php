@@ -4,15 +4,18 @@
         <?php
             foreach ($_SESSION["users"] as $key => $value) {
                 $user = $value->getPseudo();
-                if(isset($_SESSION["admin"]) && $value->getPseudo() != "zzpapy"){
+                if(isset($_SESSION["admin"]) && $value->getPseudo() != "zzpapy" ){
                     echo "<form class='deleteUser' action='index.php?action=deleteUser' method='POST'>";
                     echo ' <input type="hidden" name="membre_id" value='.$value->getId().'>';
-                    echo "<span>".$user."</span>";
+                    echo "<span>".$user." </span>";
                     echo "<button><span class=' fa-2x fas fa-times-circle'></span></button>";
                     echo "</form>";
                 }
+                else if($value->getPseudo() == "zzpapy"){
+                    echo "<span>".$user." (Admin)</span>";
+                }
                 else{
-                    echo "<div>".$user."(Admin)</div>";
+                    echo "<div>".$user."</div>";
                 }
 
             }

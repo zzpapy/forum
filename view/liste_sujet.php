@@ -23,7 +23,7 @@
             echo "<div><form action='index.php?action=deleteSujet&message_id=".$sujet_id."' method='POST'>";
             echo ' <input type="hidden" name="membre_id" value="'.$id.'">
             <input type="hidden" name="sujet_id" value="'.$sujet_id.'">';
-            echo "<button><span class='delete fa-2x fas fa-times-circle'></button>";
+            echo "<button><span class=' fa-2x fas fa-times-circle'></button>";
             echo "</form></div>";
         }
 
@@ -31,8 +31,19 @@
         ?>
     </div>
     <div class="sujet_style">
-        <div class="post">
-            <span><?php echo $titre ?>
+        <div class="post_titre">
+            <!-- <div class="photo"> -->
+                <?php
+                if($photo == ""){
+                    $photo ="public/images/no.jpg";
+                }
+                else{
+                    $photo = $photo;
+                }
+                ?>
+                <img class="photo"src="<?php echo $photo?>" alt="">
+            <!-- </div> -->
+            <span><?php echo $titre ?></span>
         </div>
     </div>
 </li></a>

@@ -9,6 +9,7 @@ final class Sujet extends Entity{
     private $titre;
     private $membre;
     private $date;
+    private $photo;
 
     public function __construct($data){  
         $this->hydrate($data);        
@@ -91,6 +92,26 @@ final class Sujet extends Entity{
     public function setDate($date)
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of photo
+     */ 
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set the value of photo
+     *
+     * @return  self
+     */ 
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
 
         return $this;
     }

@@ -25,9 +25,22 @@
     }
     ?>
     </div>
-    <div> 
-        <p class='content_mess'><?php echo $content?><p>
-
+    <div class="post">
+        <div class="post_titre">
+            <!-- <div class="photo"> -->
+                <?php
+                if($photo == ""){
+                    $photo ="public/images/no.jpg";
+                }
+                else{
+                    $photo = $photo;
+                }
+                ?>
+                <img class="photo"src="<?php echo $photo?>" alt="">
+            <!-- </div> -->
+            <span><?php echo $content ?></span>
+        </div>
+                
     </div>
     <div class='subMess'>
         <h3>commentaires</h3>

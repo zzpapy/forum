@@ -19,9 +19,10 @@ else{
 <div class="list_sujet">
     <div class="crea_mess">
         <p>Participez à la discussion</p>
-        <form action="index.php?action=crea_mess&sujet_id=<?php echo $sujet_id ?>" method="POST">
+        <form action="index.php?action=crea_mess&sujet_id=<?php echo $sujet_id ?>" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="membre_id" value="<?= $id ?>">
-            <input type="text" name="content">
+            <input class="input" type="text" name="content">
+            <input type="file" name="photo" id="photo">
             <input type="hidden" name="sujet_id" value="<?= $sujet_id ?>">
             <input type="submit" name="crea_mess">
         </form>
@@ -41,6 +42,7 @@ else{
                         $date = $value->getDate();
                         $date = new \DateTime($date);
                         $date = $date->format('d/m/Y H:i');
+                        $photo = $value->getPhoto();
                         $content = $value->getContent();
 
                         include('liste_mess.php');
@@ -52,6 +54,7 @@ else{
                     $user = $_SESSION["user"];
                     $pseudo = $result["data"]["mess"]->getMembre()->getPseudo();
                     $date = $result["data"]["mess"]->getDate();
+                    $photo = $result["data"]["mess"]->getPhoto();
                     $date = new \DateTime($date);
                     $date = $date->format('d/m/Y H:i');
                     $content = $result["data"]["mess"]->getContent();
